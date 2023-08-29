@@ -1,0 +1,15 @@
+# Compiled Python files
+*.pyc
+__pycache__/
+
+# Django development settings
+*.sqlite3
+
+# macOS system files
+.DS_Store
+
+# IDE specific files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
