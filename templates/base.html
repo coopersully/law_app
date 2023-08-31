@@ -50,8 +50,9 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="badge rounded-pill {% if user.is_authenticated %}bg-primary{% else %}bg-secondary{% endif %}">
-                            <i class="fas fa-user"></i> {% if user.is_authenticated %}{{ user.first_name }}{% else %}Not
+                        <span class="badge rounded-pill {% if user.is_authenticated %}bg-warning text-light{% else %}bg-secondary{% endif %}">
+                            <i class="fas fa-user"></i> {% if user.is_authenticated %}{% if user.first_name %}
+                            {{ user.first_name }}{% else %}{{ user.username }}{% endif %}{% else %}Not
                             Logged In{% endif %}
                         </span>
                     </a>
