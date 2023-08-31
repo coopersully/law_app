@@ -59,7 +59,7 @@
                         {% if user.is_authenticated %}
                             <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
                             <li><a class="dropdown-item" href="{% url 'home' %}">Reset Password</a></li>
-                            <li><a class="dropdown-item" href="{% url 'home' %}">Log Out</a></li>
+                            <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
                         {% else %}
                             <li><a class="dropdown-item" href="{% url 'login' %}">Log In</a></li>
                             <li><a class="dropdown-item" href="{% url 'signup' %}">Create an Account</a></li>

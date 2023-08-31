@@ -25,3 +25,8 @@ def account_details(request):
         form = CustomUserChangeForm(instance=user)
 
     return render(request, 'profile.html', {'form': form, 'user': user})
+
+
+def logout(request):
+    logout(request)
+    return redirect('home')
