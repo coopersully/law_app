@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+    <div class="container-fluid vh-100 bg-gradient text-light">
+        <div class="row justify-content-center align-items-center vh-100">
+            <div class="card col-md-6 px-5 py-5">
+                <div class="text-center">
+                    <h2>Nice to meet you.</h2>
+                    <p class="lead">Let's get started. Give us the basics and we'll do the rest. <a
+                            href="{% url 'login' %}">Already have an account?</a></p>
+                </div>
+                <form method="post" class="mt-4">
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+                    <button type="submit" class="btn btn-warning btn-lg rounded-pill text-light">
+                        Sign Up
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
