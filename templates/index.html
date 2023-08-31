@@ -5,7 +5,7 @@
 {% block content %}
     <div class="container-fluid vh-100 bg-gradient text-light">
         <div class="row justify-content-center align-items-center vh-100">
-            <div class="col-md-6 text-center text-fade-container">
+            <div class="col-md-6 text-center text-fade-container position-relative">
                 <h1 class="display-4 fw-bolder">
                     <span class="text-fade">The</span>
                     <span class="text-fade">world</span>
@@ -13,6 +13,7 @@
                     <span class="text-fade">your</span>
                     <span class="text-fade">hands.</span>
                 </h1>
+                <!-- Rest of the content -->
                 <p class="lead">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur facilisis lorem sit amet leo
                     tincidunt sagittis. Duis sit amet egestas tellus. Donec ornare tristique est eget sodales. Sed
@@ -21,6 +22,16 @@
                     sollicitudin viverra. Aenean condimentum orci ac rutrum blandit. Maecenas vel urna at sem
                     condimentum mollis. Mauris eget odio eros.
                 </p>
+                <a href="{% url 'home' %}" class="btn btn-warning btn-lg rounded-pill text-light">
+                    <i class="fa-solid fa-circle-plus"></i> Create An Account
+                </a>
+                <a href="{% url 'home' %}" class="btn btn-warning btn-lg rounded-pill text-light">
+                    <i class="fa-solid fa-circle-check"></i> Login
+                </a>
+                <!-- Chat icon positioned behind the content -->
+                <i class="fas fa-comments position-absolute"
+                   style="font-size: 50vh; opacity: 0.1; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: -1;">
+                </i>
             </div>
         </div>
     </div>
