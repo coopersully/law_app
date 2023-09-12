@@ -1,7 +1,48 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}{{ person.username }}'s profile{% endblock %}
+{% block title %}
+    {{ person.username }}'s profile
+{% endblock %}
 
 {% block content %}
-    <h1>{{ person.username }}'s profile ({{ person.role }})</h1>
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    {% if user.profile_pic %}
+                        <img src="{{ user.profile_pic.url }}" class="card-img-top"
+                             alt="{{ user.first_name }} {{ user.last_name }}">
+                    {% else %}
+                        <img src="{% static 'images/default_profile_pic.jpg' %}" class="card-img-top"
+                             alt="{{ user.first_name }} {{ user.last_name }}">
+                    {% endif %}
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{ person.username }}</h5>
+                        <p class="card-text">
+                            <i class="fas fa-user"></i> {{ person.role }}
+                        </p>
+                        <p class="card-text">
+                            <i class="fas fa-envelope"></i> {{ person.email }}
+                        </p>
+                        <p class="card-text">
+                            <i class="fas fa-phone"></i> {{ person.phone_number }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <h1>{{ person.first_name }} {{ person.last_name }}'s Profile</h1>
+                <hr>
+                <h4>Biography</h4>
+                <p>{{ person.bio }}</p>
+                <h4>School Email</h4>
+                <p>{{ person.school_email }}</p>
+                {% if person.role == 'student' %}
+                    <h4>Student ID</h4>
+                    <p>{{ person.student_id }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 {% endblock %}
