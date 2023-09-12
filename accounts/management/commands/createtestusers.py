@@ -1,3 +1,5 @@
+import random
+
 from django.core.management.base import BaseCommand
 from django.utils.crypto import get_random_string
 from accounts.models import CustomUser
@@ -22,6 +24,7 @@ class Command(BaseCommand):
             last_name = ' '.join(full_name[1:])
             username = f"{first_name.lower()}.{last_name.lower()}"
             email = f"{first_name.lower()}.{last_name.lower()}@example.com"
+            school_email = f"{first_name[0].lower()}{last_name.lower()}@{random.choice(['samford','campbell'])}.edu"
 
             if admin:
                 CustomUser.objects.create_superuser(
@@ -42,7 +45,7 @@ class Command(BaseCommand):
                     role=fake.random_element(['student', 'faculty', 'staff']),
                     phone_number=fake.phone_number(),
                     bio=fake.text(),
-                    school_email=fake.company_email(),
+                    school_email=school_email,
                     student_id=fake.random_int(min=1000, max=9999)
                 )
             self.stdout.write(self.style.SUCCESS('Successfully created new user'))
