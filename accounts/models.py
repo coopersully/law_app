@@ -15,6 +15,7 @@ class CustomUser(AbstractUser):
     bio = models.TextField(blank=True, null=True)
     school_email = models.EmailField(max_length=254, unique=True)
     student_id = models.CharField(max_length=20, blank=True, null=True)
+    profile_pic = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
 
     # Add related_name to prevent reverse accessor clashes
     groups = models.ManyToManyField(
