@@ -33,7 +33,10 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
 
     # Directory
-    path('', include('directory.urls'))
+    path('', include('directory.urls')),
+
+    # Chat
+    path('chat/', include('chat.urls'))
 ]
 
 if settings.DEBUG:
