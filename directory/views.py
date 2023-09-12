@@ -1,11 +1,21 @@
 from django.shortcuts import render
+from django.views import generic
 
-# Create your views here.
+from accounts.models import CustomUser
 
-#show all users
 
-#show individual user
+def directory(request):
+    # show all users
+    # show only professors
+    # show only students?
+    users = CustomUser.objects.order_by("first_name")
+    context = {
+        'page_name': 'directory',
+        'users': users
+    }
+    return render(request, 'directory.html', context)
 
-#show only professors
 
-#show only students?
+def profile(request, username: str):
+    # show individual user
+    pass
