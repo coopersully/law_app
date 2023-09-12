@@ -6,6 +6,52 @@
 {% block content %}
     <div class="container my-5">
         <h1>User Directory</h1>
+
+        <!-- Search bar and role filter form -->
+        <form method="get" action="{% url 'directory' %}">
+            <div class="mb-3">
+                <!-- Search Bar -->
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search" name="search"
+                           value="{{ request.GET.search }}">
+
+                    <!-- Filter Button -->
+                    <button class="btn btn-secondary" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#filterMenu" aria-expanded="false">
+                        <i class="fas fa-filter"></i>
+                    </button>
+
+                    <!-- Search Button -->
+                    <button class="btn btn-primary" type="submit">
+                        Search
+                    </button>
+                </div>
+
+                <!-- Collapsible Filter Menu -->
+                <div class="collapse mt-2" id="filterMenu">
+                    <div class="card card-body">
+                        <p class="fw-bolder">Filter Settings</p>
+                        <label for="role">Role:</label>
+                        <label>
+                            <select class="form-control" name="role">
+                                <option value="all" {% if current_role_filter == 'all' %}selected{% endif %}>All Roles
+                                </option>
+                                <option value="student" {% if current_role_filter == 'student' %}selected{% endif %}>
+                                    Student
+                                </option>
+                                <option value="faculty" {% if current_role_filter == 'faculty' %}selected{% endif %}>
+                                    Faculty
+                                </option>
+                                <option value="staff" {% if current_role_filter == 'staff' %}selected{% endif %}>Staff
+                                </option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!-- User cards -->
         <div class="row">
             {% for user in users %}
                 <div class="col-md-2">
