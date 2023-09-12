@@ -17,5 +17,9 @@ def directory(request):
 
 
 def profile(request, username: str):
-    # show individual user
-    pass
+    person = CustomUser.objects.get(username=username)
+    context = {
+        'page_name': 'directory',
+        'person': person
+    }
+    return render(request, 'user.html', context)
