@@ -21,7 +21,7 @@ def account_details(request):
         form = CustomUserChangeForm(request.POST, instance=user)
         if form.is_valid():
             form.save()
-            return redirect('profile')
+            return redirect('settings')
     else:
         form = CustomUserChangeForm(instance=user)
 

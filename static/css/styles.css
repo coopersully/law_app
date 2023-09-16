@@ -1,6 +1,12 @@
+:root {
+    --samford-blue: #0C2340;
+    --samford-red: #BD1F2D;
+    --samford-gray: #C1C6C8;
+    --samford-aqua: #64CCC9;
+}
+
 .bg-gradient {
-    background-color: #FBAB7E;
-    background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
+    background-color: var(--samford-blue);
 }
 
 .full-screen-h {

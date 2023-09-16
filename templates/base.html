@@ -31,7 +31,7 @@
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light big-nav">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background: var(--samford-blue);">
     <div class="container-fluid col-10 mx-auto fw-bolder">
         <a class="navbar-brand" href="{% url 'home' %}">
             <img src="{% static 'images/logo.svg' %}" alt="Logo" width="200">
@@ -56,7 +56,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="badge rounded-pill {% if user.is_authenticated %}bg-warning text-light{% else %}bg-secondary{% endif %}">
+                        <span class="badge rounded-pill {% if user.is_authenticated %}bg-primary text-light{% else %}bg-secondary{% endif %}">
                             <i class="fas fa-user"></i> {% if user.is_authenticated %}{% if user.first_name %}
                             {{ user.first_name }}{% else %}{{ user.username }}{% endif %}{% else %}Not
                             Logged In{% endif %}
@@ -64,8 +64,11 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="profileDropdown">
                         {% if user.is_authenticated %}
-                            <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+                            <li><a class="dropdown-item" href="{% url 'settings' %}">My Account</a></li>
                             <li><a class="dropdown-item" href="{% url 'home' %}">Reset Password</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
                             <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
                         {% else %}
                             <li><a class="dropdown-item" href="{% url 'login' %}">Log In</a></li>
@@ -83,7 +86,7 @@
 {% endblock %}
 
 <!-- Footer -->
-<footer class="px-5 py-5">
+<footer class="px-5 py-5 text-light" style="background: var(--samford-blue);">
     <div class="row align-top">
         <div class="col mb-3 align-items-center d-flex">
             <img src="{% static 'images/logo_wide.svg' %}" alt="Logo" width="250">
