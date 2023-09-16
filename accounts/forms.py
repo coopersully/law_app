@@ -17,8 +17,9 @@ class CustomUserCreationForm(UserCreationForm):
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = CustomUser
-        fields = ("username", "first_name", "last_name", "bio", "email", "phone_number", "school_email", "student_id")
+        fields = ("profile_pic", "username", "first_name", "last_name", "bio", "email", "phone_number", "school_email", "student_id")
         labels = {
+            'profile_pic': 'Profile Picture',
             'school_email': 'Samford Email address',
             'student_id': 'Samford Student ID',
             'bio': 'Biography'
