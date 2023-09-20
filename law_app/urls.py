@@ -35,6 +35,9 @@ urlpatterns = [
     # Directory
     path('', include('directory.urls')),
 
+    # Agenda
+    path('', include('agenda.urls'))
+
     # Chat
     path('chat/', include('chat.urls'))
 ]
