@@ -27,6 +27,7 @@ urlpatterns = [
 
     # Base Site
     path('', views.home, name='home'),
+    path('dashboard/', views.dashboard, name='dashboard'),
 
     # Accounts
     path('accounts/', include('accounts.urls')),
@@ -36,10 +37,10 @@ urlpatterns = [
     path('', include('directory.urls')),
 
     # Announcements
-    path('', include('announcements.urls')),
+    path('announcements/', include('announcements.urls')),
 
     # Agenda
-    path('', include('agenda.urls')),
+    path('agenda/', include('agenda.urls')),
 
     # Chat
     path('chat/', include('chat.urls'))

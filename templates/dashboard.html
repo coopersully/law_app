@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <div class="container my-5 full-screen-h">
+        <h1>ya u logged in fr</h1>
+        <div class="row">
+            <!-- Left Half: Placeholder for Agenda Upcoming -->
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Agenda Upcoming</h5>
+                    </div>
+                    <div class="card-body">
+                        <!-- Your content here -->
+                        <p class="card-text">Placeholder for upcoming agenda.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Half: Stacked content blocks -->
+            <div class="col-lg-6">
+                <!-- Upcoming Announcements -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5>Upcoming Announcements</h5>
+                    </div>
+                    <div class="card-body">
+                        <!-- Your content here -->
+                        <p class="card-text">Placeholder for upcoming announcements.</p>
+                    </div>
+                </div>
+
+                <!-- Recent Messages -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Recent Messages</h5>
+                    </div>
+                    <div class="card-body">
+                        <!-- Your content here -->
+                        <p class="card-text">Placeholder for recent messages.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
