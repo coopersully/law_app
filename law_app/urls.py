@@ -35,6 +35,9 @@ urlpatterns = [
     # Directory
     path('', include('directory.urls')),
 
+    # Announcements
+    path('', include('announcements.urls')),
+
     # Agenda
     path('', include('agenda.urls')),
 
