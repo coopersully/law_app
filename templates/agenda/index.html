@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block title %}Agenda{% endblock %}
+
+{% block content %}
+    <div class="container my-5">
+        <h1>Agenda</h1>
+
+        <!-- Search bar and sorting filter form -->
+        <form method="get" action="{% url 'agenda' %}">
+            <div class="mb-3">
+                <!-- Search Bar -->
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search" name="search"
+                           value="{{ request.GET.search }}">
+
+                    <!-- Filter Button -->
+                    <button class="btn btn-secondary" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#filterMenu" aria-expanded="false">
+                        <i class="fas fa-filter"></i>
+                    </button>
+
+                    <!-- Search Button -->
+                    <button class="btn btn-primary" type="submit">
+                        Search
+                    </button>
+
+                    <!-- Add Event Button -->
+                    <button class="btn btn-success" type="button" onclick="location.href='{% url 'agenda_new' %}'">
+                        Add Event
+                    </button>
+                </div>
+
+                <!-- Collapsible Filter Menu -->
+                <div class="collapse mt-2" id="filterMenu">
+                    <div class="card card-body">
+                        <p class="fw-bolder">Filter Settings</p>
+                        <label for="sort">Sort By:</label>
+                        <select class="form-control" name="sort">
+                            <option value="date" {% if current_sort_filter == 'date' %}selected{% endif %}>Date</option>
+                            <option value="title" {% if current_sort_filter == 'title' %}selected{% endif %}>Title
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!-- Display Existing Events -->
+        <div class="row">
+            {% for event in events %}
+                <div class="col-md-4">
+                    <div class="card hoverable mb-4">
+                        <div class="card-header">
+                            <h5>{{ event.title }}</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                <i class="fas fa-map-marker-alt"></i> {{ event.location }}
+                            </p>
+                            <p class="card-text">
+                                <i class="fas fa-clock"></i> {{ event.datetime }}
+                            </p>
+                            <p class="card-text">
+                                {{ event.description }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
