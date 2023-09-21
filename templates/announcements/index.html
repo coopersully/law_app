@@ -6,7 +6,7 @@
         <h1>Announcements</h1>
 
         <!-- Search bar and filter form -->
-        <form method="get" action="{% url 'announcement_list' %}">
+        <form method="get" action="{% url 'announcements' %}">
             <div class="mb-3">
                 <!-- Search Bar -->
                 <div class="input-group">
@@ -19,7 +19,7 @@
                     </button>
 
                     <!-- Create New Announcement Button -->
-                    <button class="btn btn-success" type="button" onclick="location.href='{% url 'announcement_new' %}'">
+                    <button class="btn btn-success" type="button" onclick="location.href='{% url 'announcements_new' %}'">
                         Create New Announcement
                     </button>
                 </div>
