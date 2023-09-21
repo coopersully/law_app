@@ -16,3 +16,15 @@
 .full-screen-w {
     min-height: 100vw;
 }
+
+.active-page {
+    color: var(--samford-red) !important;
+}
+
+.hoverable {
+    transition: box-shadow 0.15s ease-in-out, transform 0.15s ease-in-out;
+}
+
+.hoverable:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
