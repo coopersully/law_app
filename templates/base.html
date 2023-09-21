@@ -54,6 +54,9 @@
                 <li class="nav-item {% if page_name == 'agenda' %}active-page{% endif %}">
                     <a class="nav-link" href="{% url 'agenda' %}">Events</a>
                 </li>
+                <li class="nav-item {% if page_name == 'announcements' %}active-page{% endif %}">
+                    <a class="nav-link" href="{% url 'announcements' %}">Announcements</a>
+                </li>
                 <li class="nav-item {% if page_name == 'chat' %}active-page{% endif %}">
                     <a class="nav-link" href="{% url 'chat' %}">Chat</a>
                 </li>
