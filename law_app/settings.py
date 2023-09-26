@@ -20,6 +20,8 @@ from django.core.management.utils import get_random_secret_key
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Load app config variables
+# !! Replaces environment variables for Samford deployment
 f = open(os.path.join(BASE_DIR, 'config.json'))
 config = json.load(f)
 
