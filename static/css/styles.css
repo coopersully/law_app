@@ -21,6 +21,10 @@
     color: var(--samford-red) !important;
 }
 
+.text-sam-red {
+    color: var(--samford-red) !important;
+}
+
 .hoverable {
     transition: box-shadow 0.15s ease-in-out, transform 0.15s ease-in-out;
 }

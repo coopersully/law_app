@@ -91,78 +91,54 @@
     </div>
 </nav>
 
-{% block content %}
-{% endblock %}
+<div class="full-screen-h">
+    {% block content %}
+    {% endblock %}
+</div>
 
 <!-- Footer -->
 <footer class="px-5 py-5 text-light" style="background: var(--samford-blue);">
-    <div class="row align-top">
-        <div class="col mb-3 align-items-center d-flex">
-            <img src="{% static 'images/logo_wide.svg' %}" alt="Logo" width="250">
+    <div class="row align-items-start">
+        <div class="col mb-3 d-flex align-items-center">
+            <img src="{% static 'images/logo_wide_light.svg' %}" alt="Logo" width="250">
         </div>
 
         <div class="col mb-3">
-            <h5>Quick Links</h5>
+            <h5 class="text-sam-red">Explore</h5>
             <ul class="nav flex-column">
                 <li class="nav-item mb-2">
-                    <a href="{% url 'home' %}" class="nav-link p-0 text-body-secondary">
+                    <a href="{% url 'home' %}" class="nav-link p-0 text-light">
                         Home
                     </a>
                 </li>
                 <li class="nav-item mb-2">
-                    <a href="{% url 'home' %}" class="nav-link p-0 text-body-secondary">
-                        Home
+                    <a href="{% url 'directory' %}" class="nav-link p-0 text-light">
+                        Directory
                     </a>
                 </li>
                 <li class="nav-item mb-2">
-                    <a href="{% url 'home' %}" class="nav-link p-0 text-body-secondary">
-                        Home
+                    <a href="{% url 'agenda' %}" class="nav-link p-0 text-light">
+                        Events
                     </a>
                 </li>
                 <li class="nav-item mb-2">
-                    <a href="{% url 'home' %}" class="nav-link p-0 text-body-secondary">
-                        Home
+                    <a href="{% url 'announcements' %}" class="nav-link p-0 text-light">
+                        Announcements
                     </a>
                 </li>
             </ul>
         </div>
 
         <div class="col mb-3">
-            <h5>Quicker Links</h5>
+            <h5 class="text-sam-red">Legal</h5>
             <ul class="nav flex-column">
                 <li class="nav-item mb-2">
-                    <a href="{% url 'home' %}" class="nav-link p-0 text-body-secondary">
-                        Home
-                    </a>
-                </li>
-                <li class="nav-item mb-2">
-                    <a href="{% url 'home' %}" class="nav-link p-0 text-body-secondary">
-                        Home
-                    </a>
-                </li>
-                <li class="nav-item mb-2">
-                    <a href="{% url 'home' %}" class="nav-link p-0 text-body-secondary">
-                        Home
-                    </a>
-                </li>
-                <li class="nav-item mb-2">
-                    <a href="{% url 'home' %}" class="nav-link p-0 text-body-secondary">
-                        Home
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="col mb-3">
-            <h5>Legal</h5>
-            <ul class="nav flex-column">
-                <li class="nav-item mb-2">
-                    <a href="{% url 'home' %}" class="nav-link p-0 text-body-secondary">
+                    <a href="{% url 'home' %}" class="nav-link p-0 text-light">
                         Terms & Conditions
                     </a>
                 </li>
                 <li class="nav-item mb-2">
-                    <a href="{% url 'home' %}" class="nav-link p-0 text-body-secondary">
+                    <a href="{% url 'home' %}" class="nav-link p-0 text-light">
                         Privacy Policy
                     </a>
                 </li>
@@ -172,6 +148,7 @@
 
     <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
         <p>© 2023 Cooper Sullivan. All rights reserved.</p>
+        <a href="https://neonaut.io/" style="color: inherit; text-decoration: inherit;">Designed & created by Neonaut.</a>
     </div>
 </footer>
 
