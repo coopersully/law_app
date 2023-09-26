@@ -18,11 +18,11 @@
 }
 
 .active-page {
-    color: var(--samford-red) !important;
+    color: white !important;
 }
 
 .text-sam-red {
-    color: var(--samford-red) !important;
+    color: var(--samford-red);
 }
 
 .hoverable {
