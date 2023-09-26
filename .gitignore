@@ -14,3 +14,7 @@ __pycache__/
 *.sublime-project
 *.sublime-workspace
 .env
+
+# Project specific
+config.json
+config.json
