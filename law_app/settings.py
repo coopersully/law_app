@@ -17,12 +17,11 @@ from pathlib import Path
 import dj_database_url
 from django.core.management.utils import get_random_secret_key
 
-f = open('config.json')
-config = json.load(f)
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+f = open(os.path.join(BASE_DIR, 'config.json'))
+config = json.load(f)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
