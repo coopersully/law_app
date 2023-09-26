@@ -42,23 +42,29 @@
         </button>
         <div class="collapse navbar-collapse bolder" id="navbarNav">
             <ul class="navbar-nav me-auto">
-                <li class="nav-item {% if page_name == 'home' %}active-page{% endif %}">
-                    <a class="nav-link" href="{% url 'home' %}">Home</a>
+                <li class="nav-item">
+                    <a class="nav-link {% if page_name == 'home' %}active-page{% endif %}"
+                       href="{% url 'home' %}">Home</a>
                 </li>
-                <li class="nav-item {% if page_name == 'dashboard' %}active-page{% endif %}">
-                    <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+                <li class="nav-item">
+                    <a class="nav-link {% if page_name == 'dashboard' %}active-page{% endif %}"
+                       href="{% url 'dashboard' %}">Dashboard</a>
                 </li>
-                <li class="nav-item {% if page_name == 'directory' %}active-page{% endif %}">
-                    <a class="nav-link" href="{% url 'directory' %}">People</a>
+                <li class="nav-item">
+                    <a class="nav-link {% if page_name == 'directory' %}active-page{% endif %}"
+                       href="{% url 'directory' %}">People</a>
                 </li>
-                <li class="nav-item {% if page_name == 'agenda' %}active-page{% endif %}">
-                    <a class="nav-link" href="{% url 'agenda' %}">Events</a>
+                <li class="nav-item">
+                    <a class="nav-link {% if page_name == 'agenda' %}active-page{% endif %}"
+                       href="{% url 'agenda' %}">Events</a>
                 </li>
-                <li class="nav-item {% if page_name == 'announcements' %}active-page{% endif %}">
-                    <a class="nav-link" href="{% url 'announcements' %}">Announcements</a>
+                <li class="nav-item">
+                    <a class="nav-link {% if page_name == 'announcements' %}active-page{% endif %}"
+                       href="{% url 'announcements' %}">Announcements</a>
                 </li>
-                <li class="nav-item {% if page_name == 'chat' %}active-page{% endif %}">
-                    <a class="nav-link" href="{% url 'chat' %}">Chat</a>
+                <li class="nav-item">
+                    <a class="nav-link {% if page_name == 'chat' %}active-page{% endif %}"
+                       href="{% url 'chat' %}">Chat</a>
                 </li>
             </ul>
             <ul class="navbar-nav">

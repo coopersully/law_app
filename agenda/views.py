@@ -6,7 +6,8 @@ from agenda.models import Event
 
 def agenda(request):
     all_events = Event.objects.all()
-    return render(request, 'agenda/index.html', {'events': all_events})
+    context = {'page_name': 'agenda', 'events': all_events}
+    return render(request, 'agenda/index.html', context)
 
 
 def agenda_new(request):
@@ -20,4 +21,5 @@ def agenda_new(request):
     else:
         form = EventForm()
 
-    return render(request, 'agenda/new.html', {'form': form})
+    context = {'page_name': 'agenda', 'form': form}
+    return render(request, 'agenda/new.html', context)

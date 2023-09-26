@@ -11,7 +11,8 @@ def announcements(request):
         Q(title__icontains=search_term) |
         Q(content__icontains=search_term)
     ).order_by('-time_created')
-    return render(request, 'announcements/index.html', {'announcements': announcements, 'search_term': search_term})
+    context = {'page_name': 'announcements', 'announcements': announcements, 'search_term': search_term}
+    return render(request, 'announcements/index.html', context)
 
 
 def announcements_new(request):
@@ -22,4 +23,5 @@ def announcements_new(request):
             return redirect('announcements')
     else:
         form = AnnouncementForm()
-    return render(request, 'announcements/new.html', {'form': form})
+    context = {'page_name': 'announcements', 'form': form}
+    return render(request, 'announcements/new.html', context)
