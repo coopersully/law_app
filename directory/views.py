@@ -1,6 +1,5 @@
 from django.db.models import Q
 from django.shortcuts import render
-from django.views import generic
 
 from accounts.models import CustomUser
 

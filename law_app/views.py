@@ -3,9 +3,11 @@ from django.shortcuts import render
 
 
 def home(request):
-    return render(request, 'index.html')
+    context = {'page_name': 'home'}
+    return render(request, 'index.html', context)
 
 
 @login_required
 def dashboard(request):
-    return render(request, 'dashboard.html')
+    context = {'page_name': 'dashboard'}
+    return render(request, 'dashboard.html', context)
