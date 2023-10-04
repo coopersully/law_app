@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import render, redirect
 
 from .forms import DocumentUploadForm
@@ -17,6 +18,14 @@ def upload_document(request):
 
 
 def list_documents(request):
+    search_query = request.GET.get('search', '')
     documents = UploadedDocument.objects.all()
+
+    if search_query:
+        documents = documents.filter(
+            Q(title__icontains=search_query) |
+            Q(description__icontains=search_query)
+        )
+    documents.order_by("title")
     context = {'page_name': 'hub', 'documents': documents}
     return render(request, 'hub/index.html', context)
