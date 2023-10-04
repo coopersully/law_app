@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}Info. Hub{% endblock %}
+
+{% block content %}
+    <div class="container my-5">
+        <h1>Information Hub</h1>
+
+        <!-- Search bar and filter form -->
+        <form method="get" action="{% url 'announcements' %}">
+            <div class="mb-3">
+                <!-- Search Bar -->
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search" name="search"
+                           value="{{ search_term }}">
+
+                    <!-- Search Button -->
+                    <button class="btn btn-primary" type="submit">
+                        Search
+                    </button>
+
+                    <!-- Create New Announcement Button -->
+                    <button class="btn btn-success" type="button"
+                            onclick="location.href='{% url 'hub_new' %}'">
+                        Upload
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Display Existing Announcements -->
+        <div class="list-group mt-5">
+            {% for doc in documents %}
+                <a class="list-group-item list-group-item-action" href="{{ doc.file.url }}">
+                    <h5>{{ doc.title }}</h5>
+
+                    <p>
+                        {{ doc.description }}
+                    </p>
+                    <p>
+                        <small class="text-muted">{{ doc.time_created }}</small>
+                    </p>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

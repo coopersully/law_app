@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'announcements',
     'chat',
     'directory',
+    'hub',
 ]
 
 MIDDLEWARE = [

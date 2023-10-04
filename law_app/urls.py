@@ -43,7 +43,10 @@ urlpatterns = [
     path('agenda/', include('agenda.urls')),
 
     # Chat
-    path('chat/', include('chat.urls'))
+    path('chat/', include('chat.urls')),
+
+    # Information Hub
+    path('hub/', include('hub.urls'))
 ]
 
 if settings.DEBUG:
