@@ -10,17 +10,18 @@
         <p class="lead">Need a quick update? Here's what you've got going on in the upcoming days:</p>
 
         <div class="row">
-            <!-- Left Half: Placeholder for Agenda Upcoming -->
+            <!-- Left half of the Dashboard -->
             <div class="col-lg-6">
-                <div class="card" style="height: 100%">
-                    <div class="card-header">
-                        <h5>
-                            <i class="fa-solid fa-calendar"></i> Week at a Glance
-                        </h5>
-                    </div>
+                <div class="card border-0" style="height: 100%">
                     <div class="card-body">
-                        <!-- Your content here -->
-                        <div class="scrollable-card-container-alt">
+                        <h5>
+                            <i class="fa-solid fa-calendar bg-primary text-light circle-icon"></i>
+                            Week at a Glance
+                        </h5>
+
+                        <hr>
+
+                        <div class="scrollable-card-container-alt pe-4">
                             {% if events %}
                                 {% for event in events %}
                                     <div class="card mb-3">
@@ -46,19 +47,19 @@
                 </div>
             </div>
 
-
-            <!-- Right Half: Stacked content blocks -->
+            <!-- Right half of the Dashboard -->
             <div class="col-lg-6">
-                <!-- Upcoming Announcements -->
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <h5>
-                            <i class="fa-solid fa-bullhorn"></i> Announcements
-                        </h5>
-                    </div>
+                <div class="card border-0 mb-4">
                     <div class="card-body">
-                        <!-- Your content here -->
-                        <div class="scrollable-card-container">
+
+                        <h5>
+                            <i class="fa-solid fa-bullhorn bg-primary text-light circle-icon"></i>
+                            Announcements
+                        </h5>
+
+                        <hr>
+
+                        <div class="scrollable-card-container pe-4">
                             {% if announcements %}
                                 {% for announcement in announcements %}
                                     <div class="card mb-3">
@@ -74,7 +75,8 @@
                                         <h3>
                                             <i class="fa-solid fa-check"></i> You're all caught up!
                                         </h3>
-                                        <p>No announcements here. Take some time for self-care and some well-deserved relaxation.</p>
+                                        <p>No announcements here. Take some time for self-care and some well-deserved
+                                            relaxation.</p>
                                     </div>
                                 </div>
                             {% endif %}
@@ -82,17 +84,17 @@
                     </div>
                 </div>
 
-                <!-- Recent Messages -->
-                <div class="card">
-                    <div class="card-header">
-                        <h5>
-                            <i class="fa-solid fa-comments"></i> Recent Messages
-                        </h5>
-                    </div>
+                <div class="card border-0">
                     <div class="card-body">
-                        <!-- Your content here -->
-                        <div class="scrollable-card-container">
-                            <!-- Add your recent messages here -->
+
+                        <h5>
+                            <i class="fa-solid fa-comments bg-primary text-light circle-icon"></i>
+                            Recent Messages
+                        </h5>
+
+                        <hr>
+
+                        <div class="scrollable-card-container pe-4">
                             {% if recent_messages %}
                                 {% for msg in recent_messages %}
                                     <!-- Fill this in when, you know, the chat works. -->

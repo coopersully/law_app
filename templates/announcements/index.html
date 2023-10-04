@@ -19,7 +19,8 @@
                     </button>
 
                     <!-- Create New Announcement Button -->
-                    <button class="btn btn-success" type="button" onclick="location.href='{% url 'announcements_new' %}'">
+                    <button class="btn btn-success" type="button"
+                            onclick="location.href='{% url 'announcements_new' %}'">
                         Create New Announcement
                     </button>
                 </div>
@@ -31,13 +32,14 @@
             {% for announcement in announcements %}
                 <div class="col-md-4">
                     <div class="card mb-4">
-                        <div class="card-header">
-                            <h5>{{ announcement.title }}</h5>
-                        </div>
                         <div class="card-body">
+                            <h5>{{ announcement.title }}</h5>
+
+                            <hr>
+
                             <p class="card-text">{{ announcement.content }}</p>
                             <p class="card-text">
-                                <small class="text-muted">Created: {{ announcement.time_created }}</small>
+                                <small class="text-muted">{{ announcement.time_created }}</small>
                             </p>
                         </div>
                     </div>

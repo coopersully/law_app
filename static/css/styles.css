@@ -1,8 +1,12 @@
 :root {
     --samford-blue: #0C2340;
     --samford-red: #BD1F2D;
-    --samford-gray: #C1C6C8;
+    --samford-gray: rgba(193, 198, 200, 0.25);
     --samford-aqua: #64CCC9;
+}
+
+body {
+    background: var(--samford-gray);
 }
 
 .bg-gradient {
@@ -43,3 +47,15 @@
     overflow-y: auto;
 }
 
+.circle-icon {
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-text {
+    font-size: 2rem;
+}
