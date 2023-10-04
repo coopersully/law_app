@@ -1,8 +1,7 @@
-from django.shortcuts import render
-
 from django.shortcuts import render, redirect
-from .models import UploadedDocument
+
 from .forms import DocumentUploadForm
+from .models import UploadedDocument
 
 
 def upload_document(request):
@@ -13,9 +12,11 @@ def upload_document(request):
             return redirect('hub')
     else:
         form = DocumentUploadForm()
-    return render(request, 'hub/upload.html', {'form': form})
+    context = {'page_name': 'hub', 'form': form}
+    return render(request, 'hub/upload.html', context)
 
 
 def list_documents(request):
     documents = UploadedDocument.objects.all()
-    return render(request, 'hub/index.html', {'documents': documents})
+    context = {'page_name': 'hub', 'documents': documents}
+    return render(request, 'hub/index.html', context)
