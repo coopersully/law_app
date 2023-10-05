@@ -6,10 +6,44 @@
 {% block content %}
     <div class="container my-5">
         <h1>Upload a New Document</h1>
+        <hr>
+
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            {% bootstrap_form form %}
+
+            {% bootstrap_field form.file %}
+            {% bootstrap_field form.title %}
+            {% bootstrap_field form.description %}
+
             <button type="submit" class="btn btn-primary">Upload</button>
         </form>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let titleInput = document.getElementById("id_title");
+            let fileInput = document.getElementById("id_file");
+
+            fileInput.addEventListener("change", function (e) {
+                if (titleInput.value === "" && fileInput.files.length > 0) {
+                    let filename = fileInput.files[0].name;
+                    let nameWithoutExtension = filename.slice(0, filename.lastIndexOf("."));
+
+                    // Replace underscores with spaces
+                    nameWithoutExtension = nameWithoutExtension.replace(/_/g, " ");
+
+                    // Replace hyphens with spaces
+                    nameWithoutExtension = nameWithoutExtension.replace(/-/g, " ");
+
+                    // Capitalize the first letter of each word
+                    nameWithoutExtension = nameWithoutExtension.split(' ')
+                        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                        .join(' ');
+
+                    titleInput.value = nameWithoutExtension;
+                }
+            });
+        });
+    </script>
+
 {% endblock %}

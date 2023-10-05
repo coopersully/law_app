@@ -27,7 +27,6 @@ urlpatterns = [
 
     # Base Site
     path('', views.home, name='home'),
-    path('dashboard/', views.dashboard, name='dashboard'),
 
     # Accounts
     path('accounts/', include('accounts.urls')),

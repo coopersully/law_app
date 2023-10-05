@@ -1,5 +1,5 @@
 from django.db.models import Q
-from django.http import FileResponse
+from django.http import FileResponse, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 
 from .forms import DocumentUploadForm
@@ -34,4 +34,6 @@ def list_documents(request):
 
 def serve_document(request, doc_id):
     document = get_object_or_404(UploadedDocument, id=doc_id)
-    return FileResponse(document.file, content_type='application/pdf')
+    response = FileResponse(document.file)
+    response['Content-Disposition'] = f'inline; filename="{document.file.name.split("/")[-1]}"'
+    return response
