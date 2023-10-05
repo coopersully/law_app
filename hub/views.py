@@ -1,5 +1,6 @@
 from django.db.models import Q
-from django.shortcuts import render, redirect
+from django.http import FileResponse
+from django.shortcuts import render, redirect, get_object_or_404
 
 from .forms import DocumentUploadForm
 from .models import UploadedDocument
@@ -29,3 +30,8 @@ def list_documents(request):
     documents.order_by("title")
     context = {'page_name': 'hub', 'documents': documents}
     return render(request, 'hub/index.html', context)
+
+
+def serve_document(request, doc_id):
+    document = get_object_or_404(UploadedDocument, id=doc_id)
+    return FileResponse(document.file, content_type='application/pdf')

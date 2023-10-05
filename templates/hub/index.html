@@ -30,7 +30,7 @@
         <!-- Display Existing Announcements -->
         <div class="list-group mt-5">
             {% for doc in documents %}
-                <a class="list-group-item list-group-item-action" href="{{ doc.file.url }}">
+                <a class="list-group-item list-group-item-action" href="{% url 'serve_document' doc.id %}">
                     <h5>{{ doc.title }}</h5>
 
                     <p>
