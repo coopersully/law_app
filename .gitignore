@@ -4,6 +4,8 @@ __pycache__/
 
 # Django development settings
 *.sqlite3
+media/
+staticfiles/
 
 # macOS system files
 .DS_Store
@@ -16,5 +18,4 @@ __pycache__/
 .env
 
 # Project specific
-config.json
 config.json
