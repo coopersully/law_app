@@ -5,12 +5,16 @@
     --samford-aqua: #64CCC9;
 }
 
+* {
+    font-family: 'Arial', sans-serif;
+}
+
 body {
     background: var(--samford-gray);
 }
 
-.bg-gradient {
-    background-color: var(--samford-blue);
+.bg-blue {
+    background: var(--samford-blue);
 }
 
 .full-screen-h {
@@ -58,4 +62,8 @@ body {
 
 .icon-text {
     font-size: 2rem;
+}
+
+.text-justify {
+    text-align: justify;
 }

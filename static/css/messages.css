@@ -1,0 +1,57 @@
+:root {
+    --msg-incoming: #e6e6e6;
+    --msg-outgoing: #24b0ff;
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.msg {
+    padding: 10px 15px;
+    margin: 5px 0;
+    background: var(--msg-incoming);
+    border-radius: 20px;
+    display: inline-block;
+    max-width: 80%;
+    position: relative; /* Necessary for the ::before pseudo-element */
+}
+
+.msg-incoming {
+    border-top-left-radius: 5px;
+    align-self: flex-start;
+    color: black;
+}
+
+.msg-incoming::before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 1rem 1rem 0;
+    border-color: transparent transparent var(--msg-incoming) transparent;
+    position: absolute;
+    left: -0.75rem;
+    top: 0;
+    transform: rotate(180deg);
+}
+
+.msg-outgoing {
+    border-bottom-right-radius: 5px;
+    background: var(--msg-outgoing);
+    align-self: flex-end;
+    color: white;
+}
+
+.msg-outgoing::before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 1rem 1rem 0;
+    border-color: transparent transparent var(--msg-outgoing) transparent;
+    position: absolute;
+    right: -0.75rem;
+    bottom: 0;
+}

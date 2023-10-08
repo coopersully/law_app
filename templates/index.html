@@ -1,35 +1,30 @@
 {% extends 'base.html' %}
 
-{% block title %}Home Page{% endblock %}
+{% block title %}Home{% endblock %}
 
 {% block content %}
-    <div class="container-fluid full-screen-h bg-gradient text-light">
+    <div class="container-fluid full-screen-h bg-blue text-light">
         <div class="row justify-content-center align-items-center full-screen-h">
-            <div class="col-md-6 text-center text-fade-container position-relative">
-                <h1 class="display-4 fw-bolder">
-                    <span class="text-fade">The</span>
-                    <span class="text-fade">world</span>
-                    <span class="text-fade">in</span>
-                    <span class="text-fade">your</span>
-                    <span class="text-fade">hands.</span>
-                </h1>
-                <!-- Rest of the content -->
-                <p class="lead">
+            <div class="col-md-6 text-center position-relative">
+
+                <div class="fw-bolder fs-1 chat-container">
+                    <span class="msg msg-incoming">Everything you need,</span>
+                    <span class="msg msg-outgoing">right when you need it.</span>
+                </div>
+
+                <p class="lead mt-5">
                     Your go-to destination for effortless communication, event tracking, and staying in the loop with
                     what matters most in your law school journey. Need to check a date, connect with peers, or stay
                     updated on crucial announcements? We've got you covered. Join us and discover a world where
                     everything you need is just a click away.
                 </p>
+
                 <a href="{% url 'signup' %}" class="btn btn-primary btn-lg rounded-pill text-light">
                     <i class="fa-solid fa-circle-plus"></i> Create An Account
                 </a>
                 <a href="{% url 'login' %}" class="btn btn-primary btn-lg rounded-pill text-light">
                     <i class="fa-solid fa-circle-check"></i> Login
                 </a>
-                <!-- Chat icon positioned behind the content -->
-                <i class="fas fa-comments position-absolute"
-                   style="font-size: 50vh; opacity: 0.1; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: -1;">
-                </i>
             </div>
         </div>
     </div>
