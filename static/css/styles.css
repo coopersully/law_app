@@ -13,10 +13,6 @@ body {
     background: var(--samford-gray);
 }
 
-.bg-blue {
-    background: var(--samford-blue);
-}
-
 .full-screen-h {
     min-height: calc(100vh - 50px);
 }
