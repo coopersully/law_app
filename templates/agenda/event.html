@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ event.title }}
+{% endblock %}
+
+{% block content %}
+    <div class="container my-5 full-screen-h">
+        <div class="row">
+            <div class="col-md-9">
+                <h1>{{ event.title }}</h1>
+                <hr>
+                <p>{{ event.owner.first_name }} {{ event.owner.last_name }}</p>
+                <h4>Time</h4>
+                <p>{{ event.datetime }}</p>
+                <h4>Description</h4>
+                <p>{{ event.description }}</p>
+                <h4>Location</h4>
+                <p><a href="{{ event.map }}">{{ event.location }}</a></p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

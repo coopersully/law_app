@@ -67,7 +67,7 @@
                             </svg>
                         </div>
                         <div class="card-body">
-                            <h5>{{ event.title }}</h5>
+                            <h5><a href="{% url 'event' event.id %}">{{ event.title }}</a></h5>
 
                             <hr>
 

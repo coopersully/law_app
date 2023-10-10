@@ -9,6 +9,14 @@ def agenda(request):
     context = {'page_name': 'agenda', 'events': all_events}
     return render(request, 'agenda/index.html', context)
 
+def event(request, event_id):
+    meeting = Event.objects.get(id=event_id)
+    context = {
+        'page_name': 'event',
+        'event': meeting
+    }
+
+    return render(request, 'agenda/event.html', context)
 
 def agenda_new(request):
     if request.method == 'POST':
