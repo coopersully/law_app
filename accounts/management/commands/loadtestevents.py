@@ -44,5 +44,6 @@ class Command(BaseCommand):
                 description=event_data['description'],
                 location=event_data['location'],
                 datetime=event_data['datetime'],
+                map=event_data['map'],
                 owner_id=1,
             )
