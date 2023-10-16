@@ -37,3 +37,10 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.username
+
+class Program(models.Model):
+    year = models.IntegerField(4)
+    title = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.title
