@@ -10,26 +10,18 @@
             <div class="card my-5 mx-2">
                 <div class="card-body">
                     <div class="col-md-6 mx-auto text-center mb-3">
-                        {% if user.profile_pic %}
-                            <img src="{{ user.profile_pic.url }}"
-                                 class="img-fluid rounded-circle"
-                                 alt="{{ user.first_name }} {{ user.last_name }}"
-                                 style="height: 150px; width: 150px;"
-                            >
-                        {% else %}
-                            <img src="{% static 'images/default_profile_pic.jpg' %}"
-                                 class="img-fluid rounded-circle"
-                                 alt="{{ user.first_name }} {{ user.last_name }}"
-                                 style="height: 150px; width: 150px;"
-                            >
-                        {% endif %}
+                        <img src="{{ user.profile_pic.url }}"
+                             class="img-fluid rounded-circle"
+                             alt="{{ user.first_name }} {{ user.last_name }}"
+                             style="height: 150px; width: 150px;"
+                        >
                     </div>
                     <div class="text-center">
                         <h2>Welcome back,
                             {% if user.first_name %}{{ user.first_name }}{% else %}{{ user.username }}{% endif %}.</h2>
                         <p class="lead">All your info is below. Feel free to change anything.</p>
                     </div>
-                    <form method="post" class="mt-4">
+                    <form method="post" enctype="multipart/form-data" class="mt-4">
                         {% csrf_token %}
                         {% bootstrap_field form.profile_pic %}
                         {% bootstrap_field form.username %}
