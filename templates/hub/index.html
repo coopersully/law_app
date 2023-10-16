@@ -18,11 +18,13 @@
                         Search
                     </button>
 
-                    <!-- Create New Announcement Button -->
-                    <button class="btn btn-success" type="button"
-                            onclick="location.href='{% url 'hub_new' %}'">
-                        Upload
-                    </button>
+                    {% if user.is_staff or user.is_superuser %}
+                        <!-- Create New Announcement Button -->
+                        <button class="btn btn-success" type="button"
+                                onclick="location.href='{% url 'hub_new' %}'">
+                            Upload
+                        </button>
+                    {% endif %}
                 </div>
             </div>
         </form>

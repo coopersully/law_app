@@ -1,4 +1,5 @@
 from django.db.models import Q
+from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect
 
 from agenda.forms import EventForm
@@ -45,6 +46,10 @@ def event(request, event_id):
 
 
 def agenda_new(request):
+    # Check if the user is an admin (staff or superuser)
+    if not (request.user.is_staff or request.user.is_superuser):
+        return HttpResponseForbidden("You don't have permission to access this page.")
+
     if request.method == 'POST':
         form = EventForm(request.POST)
         if form.is_valid():

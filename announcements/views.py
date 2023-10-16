@@ -1,4 +1,5 @@
 from django.db.models import Q
+from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect
 
 from announcements.forms import AnnouncementForm
@@ -16,6 +17,10 @@ def announcements(request):
 
 
 def announcements_new(request):
+    # Check if the user is an admin (staff or superuser)
+    if not (request.user.is_staff or request.user.is_superuser):
+        return HttpResponseForbidden("You don't have permission to access this page.")
+
     if request.method == "POST":
         form = AnnouncementForm(request.POST)
         if form.is_valid():
@@ -23,6 +28,7 @@ def announcements_new(request):
             return redirect('announcements')
     else:
         form = AnnouncementForm()
+
     context = {'page_name': 'announcements', 'form': form}
     return render(request, 'announcements/new.html', context)
 

@@ -1,5 +1,5 @@
 from django.db.models import Q
-from django.http import FileResponse, HttpResponse
+from django.http import FileResponse, HttpResponse, HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404
 
 from .forms import DocumentUploadForm
@@ -7,6 +7,10 @@ from .models import UploadedDocument
 
 
 def upload_document(request):
+    # Check if the user is an admin (staff or superuser)
+    if not (request.user.is_staff or request.user.is_superuser):
+        return HttpResponseForbidden("You don't have permission to access this page.")
+
     if request.method == 'POST':
         form = DocumentUploadForm(request.POST, request.FILES)
         if form.is_valid():
@@ -14,6 +18,7 @@ def upload_document(request):
             return redirect('hub')
     else:
         form = DocumentUploadForm()
+
     context = {'page_name': 'hub', 'form': form}
     return render(request, 'hub/upload.html', context)
 
