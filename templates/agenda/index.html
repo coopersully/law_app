@@ -67,13 +67,13 @@
                             </svg>
                         </div>
                         <div class="card-body">
-                            <h5><a href="{% url 'event' event.id %}">{{ event.title }}</a></h5>
+                            <h5><a href="{% url 'event' event.id %}" class="text-decoration-none">{{ event.title }}</a></h5>
 
                             <hr>
 
-                            <p class="card-text">
-                                <i class="fas fa-map-marker-alt"></i> <a href={{ event.map }}>{{ event.location }}</a>
-                            </p>
+                            <a class="card-text text-decoration-none" style="color: inherit;" href={{ event.map }}>
+                                <i class="fas fa-map-marker-alt"></i> {{ event.location }}
+                            </a>
                             <p class="card-text">
                                 <i class="fas fa-clock"></i> {{ event.datetime }}
                             </p>
