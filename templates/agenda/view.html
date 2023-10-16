@@ -8,10 +8,12 @@
 {% block content %}
     <div class="container my-5 full-screen-h">
         <div class="row">
-            <div class="col-md-9">
+            <div class="card px-5 py-5 col-12 col-md-10 mx-auto">
                 <h1>{{ event.title }}</h1>
+                <p class="text-secondary">Hosted by {{ event.owner.first_name }} {{ event.owner.last_name }}</p>
+
                 <hr>
-                <p>{{ event.owner.first_name }} {{ event.owner.last_name }}</p>
+
                 <h4>Time</h4>
                 <p>{{ event.datetime }}</p>
                 <h4>Description</h4>

@@ -25,3 +25,13 @@ def announcements_new(request):
         form = AnnouncementForm()
     context = {'page_name': 'announcements', 'form': form}
     return render(request, 'announcements/new.html', context)
+
+
+def announcement(request, announcement_id):
+    bit = Announcement.objects.get(id=announcement_id)
+    context = {
+        'page_name': 'announcements',
+        'announcement': bit
+    }
+
+    return render(request, 'announcements/view.html', context)
