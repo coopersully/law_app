@@ -4,33 +4,19 @@
 {% block title %}Directory{% endblock %}
 
 {% block content %}
-    <div class="container my-5 full-screen-h">
-        <h1>User Directory</h1>
+    <form method="get" action="{% url 'directory' %}">
+        <div class="col-12 col-md-10 mx-auto my-5 full-screen-h">
+            <div class="text-center">
+                <h1>User Directory</h1>
+                <p>Browse profiles, find contact information, and connect with classmates.</p>
+                <hr>
+            </div>
 
-        <!-- Search bar and role filter form -->
-        <form method="get" action="{% url 'directory' %}">
-            <div class="mb-3">
-                <!-- Search Bar -->
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search" name="search"
-                           value="{{ request.GET.search }}">
-
-                    <!-- Filter Button -->
-                    <button class="btn btn-secondary" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#filterMenu" aria-expanded="false">
-                        <i class="fas fa-filter"></i>
-                    </button>
-
-                    <!-- Search Button -->
-                    <button class="btn btn-primary" type="submit">
-                        Search
-                    </button>
-                </div>
-
-                <!-- Collapsible Filter Menu -->
-                <div class="collapse mt-2" id="filterMenu">
-                    <div class="card card-body">
-                        <p class="fw-bolder">Filter Settings</p>
+            <div class="row">
+                <div class="col-md-2">
+                    <!-- Filter Menu -->
+                    <div class="card card-body" style="height: 100%">
+                        <h2>Filter Results</h2>
                         <label for="role">Role:</label>
                         <label>
                             <select class="form-control" name="role">
@@ -48,32 +34,49 @@
                         </label>
                     </div>
                 </div>
-            </div>
-        </form>
+                <div class="col-md-10">
+                    <!-- Search bar and role filter form -->
+                    <div class="mb-3">
+                        <!-- Search Bar -->
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search" name="search"
+                                   value="{{ request.GET.search }}">
 
-        <!-- User cards -->
-        <div class="row">
-            {% for user in users %}
-                <div class="col-md-2">
-                    <div class="card mb-4">
-                        {% if user.profile_pic %}
-                            <img src="{{ user.profile_pic.url }}" class="card-img-top"
-                                 alt="{{ user.first_name }} {{ user.last_name }}">
-                        {% else %}
-                            <img src="{% static 'images/default_profile_pic.jpg' %}" class="card-img-top"
-                                 alt="{{ user.first_name }} {{ user.last_name }}">
-                        {% endif %}
-                        <div class="card-body">
-                            <h5 class="card-title">{{ user.first_name }} {{ user.last_name }}</h5>
-                            <a href="{% url 'view_profile' user.username %}" class="btn btn-primary">View Profile</a>
+                            <!-- Search Button -->
+                            <button class="btn btn-primary" type="submit">
+                                Search
+                            </button>
                         </div>
                     </div>
+
+                    <!-- User cards -->
+                    <div class="row flex-row d-flex align-items-stretch">
+                        {% for user in users %}
+                            <div class="col-md-2">
+                                <a class="text-decoration-none" href="{% url 'view_profile' user.username %}">
+                                    <div class="card mb-4">
+                                        {% if user.profile_pic %}
+                                            <img src="{{ user.profile_pic.url }}" class="card-img-top"
+                                                 alt="{{ user.first_name }} {{ user.last_name }}">
+                                        {% else %}
+                                            <img src="{% static 'images/default_profile_pic.jpg' %}"
+                                                 class="card-img-top"
+                                                 alt="{{ user.first_name }} {{ user.last_name }}">
+                                        {% endif %}
+                                        <div class="card-body">
+                                            <p class="card-title truncate">{{ user.first_name }} {{ user.last_name }}</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        {% empty %}
+                            <div class="col-12">
+                                <p>No users found.</p>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
-            {% empty %}
-                <div class="col-12">
-                    <p>No users found.</p>
-                </div>
-            {% endfor %}
+            </div>
         </div>
-    </div>
+    </form>
 {% endblock %}

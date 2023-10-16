@@ -67,3 +67,9 @@ body {
 .text-justify {
     text-align: justify;
 }
+
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
