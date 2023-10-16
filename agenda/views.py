@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import render, redirect
 
 from agenda.forms import EventForm
@@ -5,8 +6,31 @@ from agenda.models import Event
 
 
 def agenda(request):
-    all_events = Event.objects.all()
-    context = {'page_name': 'agenda', 'events': all_events}
+    search_query = request.GET.get('search', '')
+    sort_filter = request.GET.get('sort', 'date')
+
+    # Fetch all events
+    events = Event.objects.all()
+
+    # Apply the search filter
+    if search_query:
+        events = events.filter(
+            Q(title__icontains=search_query) |
+            Q(description__icontains=search_query)  # Assuming that 'description' is a field on your Event model
+        )
+
+    # Apply the sort filter
+    if sort_filter == 'date':
+        events = events.order_by('datetime')
+    elif sort_filter == 'title':
+        events = events.order_by('title')
+
+    context = {
+        'page_name': 'agenda',
+        'events': events,
+        'current_sort_filter': sort_filter
+    }
+
     return render(request, 'agenda/index.html', context)
 
 

@@ -8,18 +8,23 @@
 {% block content %}
     <div class="container my-5 full-screen-h">
         <div class="row">
-            <div class="card px-5 py-5 col-12 col-md-10 mx-auto">
-                <h1>{{ event.title }}</h1>
-                <p class="text-secondary">Hosted by {{ event.owner.first_name }} {{ event.owner.last_name }}</p>
+            <div class="col-12 col-md-10 mx-auto">
+                <div class="card">
+                    <div class="card-img-top event-header"></div>
+                    <div class="card-body">
+                        <h1>{{ event.title }}</h1>
+                        <p class="text-secondary">Hosted by {{ event.owner.first_name }} {{ event.owner.last_name }}</p>
 
-                <hr>
+                        <hr>
 
-                <h4>Time</h4>
-                <p>{{ event.datetime }}</p>
-                <h4>Description</h4>
-                <p>{{ event.description }}</p>
-                <h4>Location</h4>
-                <p><a href="{{ event.map }}">{{ event.location }}</a></p>
+                        <h4>Time</h4>
+                        <p>{{ event.datetime }}</p>
+                        <h4>Description</h4>
+                        <p>{{ event.description }}</p>
+                        <h4>Location</h4>
+                        <p><a href="{{ event.map }}">{{ event.location }}</a></p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

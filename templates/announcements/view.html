@@ -8,13 +8,18 @@
 {% block content %}
     <div class="container my-5 full-screen-h">
         <div class="row">
-            <div class="card px-5 py-5 col-12 col-md-10 mx-auto">
-                <h1>{{ announcement.title }}</h1>
-                <p class="text-secondary">{{ announcement.time_created }}</p>
+            <div class="col-12 col-md-10 mx-auto">
+                <div class="card">
+                    <div class="card-img-top announcement-header"></div>
+                    <div class="card-body">
+                        <h1>{{ announcement.title }}</h1>
+                        <p class="text-secondary">{{ announcement.time_created }}</p>
 
-                <hr>
+                        <hr>
 
-                <p>{{ announcement.content }}</p>
+                        <p>{{ announcement.content }}</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
