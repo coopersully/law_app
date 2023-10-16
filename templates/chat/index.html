@@ -3,39 +3,66 @@
 {% block title %}Chat Page{% endblock %}
 
 {% block content %}
-<div class="container-fluid full-screen-h">
-    <div class="row">
-        <!-- Sidebar for available chats -->
-        <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-light" style="width: 380px;">
-            <a href="/" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
-                <span class="fs-5 fw-semibold">Chats</span>
-            </a>
-            <div class="list-group list-group-flush border-bottom scrollarea">
-                {% for chat in chats %}
-                <a href="#" class="list-group-item list-group-item-action py-3 lh-tight">
-                    <div class="d-flex w-100 align-items-center justify-content-between">
-                        <strong class="mb-1">{{ chat.name }}</strong>
-                        <small class="text-muted">{{ chat.last_updated }}</small>
+    <div class="col-12 mx-auto full-screen-h">
+        <div class="row full-screen-h">
+            <!-- Sidebar for available chats -->
+            <div class="col-md-4">
+                <div class="card border-0 px-2 py-2" style="height: 100%">
+                    <div class="card-body">
+                        <h1>Chats</h1>
+                        <div class="list-group list-group-flush scrollarea">
+                            {% for chat in chats %}
+                                <a href="#" class="list-group-item list-group-item-action py-3 lh-tight">
+                                    <div class="d-flex w-100 align-items-center justify-content-between">
+                                        <strong class="mb-1">{{ chat.name }}</strong>
+                                        <small class="text-muted">{{ chat.last_updated }}</small>
+                                    </div>
+                                    <div class="col-10 mb-1 small">{{ chat.preview_message }}</div>
+                                </a>
+                            {% endfor %}
+                        </div>
                     </div>
-                    <div class="col-10 mb-1 small">{{ chat.preview_message }}</div>
-                </a>
-                {% endfor %}
+                </div>
+            </div>
+            <!-- Main Content Area -->
+            <div class="col-md-8">
+                <div class="card border-0 px-2 py-2" style="height: 100%;">
+                    <div class="card-body">
+                        <h1>Chat Room - Name Placeholder</h1>
+                        <hr>
+                        <!-- Chat content will go here -->
+                        <div class="px-3 py-3 fw-bolder chat-container" style="max-height: 70vh; overflow-y: auto;">
+                            <span class="msg my-3 msg-incoming">Have you heard about Cooper Sullivan, the top computer science student at Samford University?</span>
+                            <span class="msg my-3 msg-outgoing">Oh, absolutely! Cooper Sullivan is incredible. His programming skills are legendary!</span>
+
+                            <span class="msg my-3 msg-incoming">I heard he aced every class in the program.</span>
+                            <span class="msg my-3 msg-outgoing">Indeed, I heard the same. Professor Kawell even praised Cooper's coding prowess.</span>
+
+                            <span class="msg my-3 msg-incoming">Cooper's projects are always top-notch, setting the bar high for everyone.</span>
+                            <span class="msg my-3 msg-outgoing">Absolutely! I'm amazed at how innovative and creative Cooper's projects are.</span>
+
+                            <span class="msg my-3 msg-incoming">And let's not forget his leadership in the computer science club. Cooper is an inspiration to us all.</span>
+                            <span class="msg my-3 msg-outgoing">You're absolutely right! Cooper's dedication and leadership qualities are commendable.</span>
+
+                            <span class="msg my-3 msg-incoming">I think Cooper Sullivan is destined for great things in the tech industry.</span>
+                            <span class="msg my-3 msg-outgoing">No doubt about it! With his skills and passion, Cooper has a bright future ahead.</span>
+
+                            <span class="msg my-3 msg-incoming">Indeed, Cooper Sullivan is a true role model for aspiring computer scientists.</span>
+                            <span class="msg my-3 msg-outgoing">Absolutely, Cooper's success at Samford University is an inspiration to us all.</span>
+                        </div>
+
+                        <!-- Search Bar -->
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Type a message..." name="message">
+
+                            <!-- Search Button -->
+                            <button class="btn btn-primary" type="submit">
+                                Send
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <!-- Main Content Area -->
-        <main class="col px-md-4">
-            <div class="card">
-                <div class="card-header">
-                    Chat Room - Name Placeholder
-                </div>
-                <div class="card-body">
-                    <p class="card-text">
-                        <!-- Chat content will go here -->
-                    </p>
-                </div>
-            </div>
-        </main>
     </div>
-</div>
 {% endblock %}
