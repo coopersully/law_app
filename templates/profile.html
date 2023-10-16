@@ -1,23 +1,66 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load bootstrap5 %}
 
 {% block title %}{{ user.username }}'s Profile{% endblock %}
 
 {% block content %}
-    <div class="container-fluid full-screen-h">
+    <div class="col-12 col-md-10 mx-auto my-5 full-screen-h">
         <div class="row justify-content-center align-items-center">
-            <div class="card col-md-4 px-5 py-5 my-5 mx-2">
-                <div class="text-center">
-                    <h2>Welcome back, {% if user.first_name %}{{ user.first_name }}{% else %}{{ user.username }}{% endif %}.</h2>
-                    <p class="lead">All your info is below. Feel free to change anything.</p>
+            <div class="card my-5 mx-2">
+                <div class="card-body">
+                    <div class="col-md-6 mx-auto text-center mb-3">
+                        {% if user.profile_pic %}
+                            <img src="{{ user.profile_pic.url }}"
+                                 class="img-fluid rounded-circle"
+                                 alt="{{ user.first_name }} {{ user.last_name }}"
+                                 style="height: 150px; width: 150px;"
+                            >
+                        {% else %}
+                            <img src="{% static 'images/default_profile_pic.jpg' %}"
+                                 class="img-fluid rounded-circle"
+                                 alt="{{ user.first_name }} {{ user.last_name }}"
+                                 style="height: 150px; width: 150px;"
+                            >
+                        {% endif %}
+                    </div>
+                    <div class="text-center">
+                        <h2>Welcome back,
+                            {% if user.first_name %}{{ user.first_name }}{% else %}{{ user.username }}{% endif %}.</h2>
+                        <p class="lead">All your info is below. Feel free to change anything.</p>
+                    </div>
+                    <form method="post" class="mt-4">
+                        {% csrf_token %}
+                        {% bootstrap_field form.profile_pic %}
+                        {% bootstrap_field form.username %}
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                {% bootstrap_field form.first_name %}
+                            </div>
+                            <div class="col-md-6">
+                                {% bootstrap_field form.last_name %}
+                            </div>
+                        </div>
+
+                        {% bootstrap_field form.bio %}
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                {% bootstrap_field form.email %}
+                                {% bootstrap_field form.phone_number %}
+                            </div>
+                            <div class="col-md-6">
+                                {% bootstrap_field form.school_email %}
+                                {% bootstrap_field form.student_id %}
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-lg rounded-pill text-light">
+                            Save Changes
+                        </button>
+                    </form>
                 </div>
-                <form method="post" class="mt-4">
-                    {% csrf_token %}
-                    {% bootstrap_form form %}
-                    <button type="submit" class="btn btn-primary btn-lg rounded-pill text-light">
-                        Save Changes
-                    </button>
-                </form>
             </div>
         </div>
     </div>
