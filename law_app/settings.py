@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 
     # Installed
     'bootstrap5',
+    'channels',
 
     # Custom
     'accounts',
@@ -90,7 +91,16 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'law_app.wsgi.application'
+ASGI_APPLICATION = 'law_app.asgi.application'
 
+CHANNELS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [('redis://default:uwMZhtv2HYwEXmgBODwQZzjVytvaa4HI@redis-17235.c240.us-east-1-3.ec2.cloud.redislabs.com:17235')]
+        }
+    }
+}
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases

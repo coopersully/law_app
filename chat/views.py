@@ -8,3 +8,12 @@ def chat(request):
         'page_name': 'chat',
     }
     return render(request, 'chat/index.html', context)
+
+
+@login_required
+def chat_room(request, room_name):
+    context = {
+        'page_name': 'chat',
+        'room_name': room_name
+    }
+    return render(request, 'chat/room.html', context)
