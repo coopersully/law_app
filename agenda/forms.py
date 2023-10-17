@@ -7,7 +7,7 @@ from agenda.models import Event
 class EventForm(forms.ModelForm):
     class Meta:
         model = Event
-        fields = ['title', 'description', 'location', 'map', 'datetime']
+        fields = ['title', 'description', 'location', 'map', 'datetime', 'program']
         widgets = {
             'datetime': DateTimeInput(attrs={'type': 'datetime-local'}),
             'location': TextInput(attrs={'id': 'locationInput'}),
