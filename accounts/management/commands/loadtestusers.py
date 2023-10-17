@@ -7,150 +7,401 @@ class Command(BaseCommand):
     help = 'Create faux user data in bulk'
 
     def handle(self, *args, **kwargs):
-        CustomUser.objects.create_user(username="atalanta.blalock", email="me@example.com", first_name="Atalanta",
-                                       last_name="Blalock", password="password", role="student",
-                                       phone_number="205-***-****", bio="I love law!",
-                                       school_email="ablalock@campbell.edu", student_id=4587, program_id=1)
+        user = [
+            {
+                'username': 'rosemary.wise',
+                'email': 'rwise@samford.edu',
+                'first_name': 'Rosemary',
+                'last_name': 'Wise',
+                'password': 'password',
+                'role': 'student',
+                'phone_number': '205-xxx-xxx',
+                'bio': 'I love law! (Part of program 2',
+                'school_email': 'rwise@samford.edu',
+                'student_id': 5142,
+                'program_id': 2
+            },
+            {
+                'username': 'ara.mckinney',
+                'email': 'amckinney@samford.edu',
+                'first_name': 'Dr. Ara',
+                'last_name': 'McKinney',
+                'password': 'password',
+                'role': 'staff',
+                'phone_number': '205-xxx-xxx',
+                'bio': 'I love law! (Part of program 2',
+                'school_email': 'amckinney@samford.edu',
+                'student_id': 9717,
+                'program_id': 2
+            },
+            {
+                'username': 'samara.mayer',
+                'email': 'smayer@campbell.edu',
+                'first_name': 'Dr. Samara',
+                'last_name': 'Mayer',
+                'password': 'password',
+                'role': 'staff',
+                'phone_number': '205-xxx-xxx',
+                'bio': 'I love law! (Part of program 2',
+                'school_email': 'smayer@campbell.edu',
+                'student_id': 1878,
+                'program_id': 2
+            },
+            {
+                'username': 'carlie.banks',
+                'email': 'cbanks@campbell.edu',
+                'first_name': 'Dr. Carlie',
+                'last_name': 'Banks',
+                'password': 'password',
+                'role': 'staff',
+                'phone_number': '205-xxx-xxx',
+                'bio': 'I love law! (Part of program 1',
+                'school_email': 'cbanks@campbell.edu',
+                'student_id': 8216,
+                'program_id': 1
+            },
+            {
+                'username': 'aryn.lowry',
+                'email': 'alowry@samford.edu',
+                'first_name': 'Aryn',
+                'last_name': 'Lowry',
+                'password': 'password',
+                'role': 'faculty',
+                'phone_number': '205-xxx-xxx',
+                'bio': 'I love law! (Part of program 2',
+                'school_email': 'alowry@samford.edu',
+                'student_id': 3221,
+                'program_id': 2
+            },
+            {
+                'username': 'iormina.tucker',
+                'email': 'itucker@samford.edu',
+                'first_name': 'Iormina',
+                'last_name': 'Tucker',
+                'password': 'password',
+                'role': 'student',
+                'phone_number': '205-xxx-xxx',
+                'bio': 'I love law! (Part of program 1',
+                'school_email': 'itucker@samford.edu',
+                'student_id': 542,
+                'program_id': 1
+            },
+            {
+                'username': 'lurlene.ivey',
+                'email': 'livey@samford.edu',
+                'first_name': 'Lurlene',
+                'last_name': 'Ivey',
+                'password': 'password',
+                'role': 'faculty',
+                'phone_number': '205-xxx-xxx',
+                'bio': 'I love law! (Part of program 2',
+                'school_email': 'livey@samford.edu',
+                'student_id': 4757,
+                'program_id': 2
+            },
+            {
+                'username': 'terry.desai',
+                'email': 'tdesai@campbell.edu',
+                'first_name': 'Terry',
+                'last_name': 'Desai',
+                'password': 'password',
+                'role': 'student',
+                'phone_number': '205-xxx-xxx',
+                'bio': 'I love law! (Part of program 1',
+                'school_email': 'tdesai@campbell.edu',
+                'student_id': 3595,
+                'program_id': 1
+            },
+            {
+                'username': 'cora.buck',
+                'email': 'cbuck@campbell.edu',
+                'first_name': 'Dr. Cora',
+                'last_name': 'Buck',
+                'password': 'password',
+                'role': 'staff',
+                'phone_number': '205-xxx-xxx',
+                'bio': 'I love law! (Part of program 1',
+                'school_email': 'cbuck@campbell.edu',
+                'student_id': 7251,
+                'program_id': 1
+            },
+            {
+                'username': 'de.horn',
+                'email': 'dhorn@samford.edu',
+                'first_name': 'Dr. De',
+                'last_name': 'Horn',
+                'password': 'password',
+                'role': 'staff',
+                'phone_number': '205-xxx-xxx',
+                'bio': 'I love law! (Part of program 2',
+                'school_email': 'dhorn@samford.edu',
+                'student_id': 6977,
+                'program_id': 2
+            },
+            {
+                'username': 'almeta.nixon',
+                'email': 'anixon@samford.edu',
+                'first_name': 'Dr. Almeta',
+                'last_name': 'Nixon',
+                'password': 'password',
+                'role': 'staff',
+                'phone_number': '205-xxx-xxx',
+                'bio': 'I love law! (Part of program 2',
+                'school_email': 'anixon@samford.edu',
+                'student_id': 7207,
+                'program_id': 2
+            },
+            {
+                'username': 'anabel.cannon',
+                'email': 'acannon@campbell.edu',
+                'first_name': 'Anabel',
+                'last_name': 'Cannon',
+                'password': 'password',
+                'role': 'student',
+                'phone_number': '205-xxx-xxx',
+                'bio': 'I love law! (Part of program 1',
+                'school_email': 'acannon@campbell.edu',
+                'student_id': 703,
+                'program_id': 1
+            },
+            {
+                'username': 'chastity.hatcher',
+                'email': 'chatcher@campbell.edu',
+                'first_name': 'Chastity',
+                'last_name': 'Hatcher',
+                'password': 'password',
+                'role': 'faculty',
+                'phone_number': '205-xxx-xxx',
+                'bio': 'I love law! (Part of program 2',
+                'school_email': 'chatcher@campbell.edu',
+                'student_id': 695,
+                'program_id': 2
+            },
+            {
+                'username': 'davida.kahn',
+                'email': 'dkahn@samford.edu',
+                'first_name': 'Dr. Davida',
+                'last_name': 'Kahn',
+                'password': 'password',
+                'role': 'staff',
+                'phone_number': '205-xxx-xxx',
+                'bio': 'I love law! (Part of program 1',
+                'school_email': 'dkahn@samford.edu',
+                'student_id': 7266,
+                'program_id': 1
+            },
+            {
+                'username': 'lilith.hinson',
+                'email': 'lhinson@samford.edu',
+                'first_name': 'Lilith',
+                'last_name': 'Hinson',
+                'password': 'password',
+                'role': 'faculty',
+                'phone_number': '205-xxx-xxx',
+                'bio': 'I love law! (Part of program 2',
+                'school_email': 'lhinson@samford.edu',
+                'student_id': 128,
+                'program_id': 2
+            },
+            {
+                'username': 'anne-corinne.shields',
+                'email': 'ashields@campbell.edu',
+                'first_name': 'Anne-Corinne',
+                'last_name': 'Shields',
+                'password': 'password',
+                'role': 'student',
+                'phone_number': '205-xxx-xxx',
+                'bio': 'I love law! (Part of program 2',
+                'school_email': 'ashields@campbell.edu',
+                'student_id': 5890,
+                'program_id': 2
+            },
+            {
+                'username': 'andriana.ferrell',
+                'email': 'aferrell@samford.edu',
+                'first_name': 'Andriana',
+                'last_name': 'Ferrell',
+                'password': 'password',
+                'role': 'student',
+                'phone_number': '205-xxx-xxx',
+                'bio': 'I love law! (Part of program 1',
+                'school_email': 'aferrell@samford.edu',
+                'student_id': 3728,
+                'program_id': 1
+            },
+            {
+                'username': 'elyse.callahan',
+                'email': 'ecallahan@samford.edu',
+                'first_name': 'Dr. Elyse',
+                'last_name': 'Callahan',
+                'password': 'password',
+                'role': 'staff',
+                'phone_number': '205-xxx-xxx',
+                'bio': 'I love law! (Part of program 2',
+                'school_email': 'ecallahan@samford.edu',
+                'student_id': 3044,
+                'program_id': 2
+            },
+            {
+                'username': 'teddie.weiner',
+                'email': 'tweiner@campbell.edu',
+                'first_name': 'Teddie',
+                'last_name': 'Weiner',
+                'password': 'password',
+                'role': 'faculty',
+                'phone_number': '205-xxx-xxx',
+                'bio': 'I love law! (Part of program 1',
+                'school_email': 'tweiner@campbell.edu',
+                'student_id': 9358,
+                'program_id': 1
+            },
+            {
+                'username': 'carri.camp',
+                'email': 'ccamp@campbell.edu',
+                'first_name': 'Carri',
+                'last_name': 'Camp',
+                'password': 'password',
+                'role': 'faculty',
+                'phone_number': '205-xxx-xxx',
+                'bio': 'I love law! (Part of program 1',
+                'school_email': 'ccamp@campbell.edu',
+                'student_id': 3992,
+                'program_id': 1
+            },
+            {
+                'username': 'brittne.cook',
+                'email': 'bcook@samford.edu',
+                'first_name': 'Brittne',
+                'last_name': 'Cook',
+                'password': 'password',
+                'role': 'student',
+                'phone_number': '205-xxx-xxx',
+                'bio': 'I love law! (Part of program 2',
+                'school_email': 'bcook@samford.edu',
+                'student_id': 9860,
+                'program_id': 2
+            },
+            {
+                'username': 'winona.frost',
+                'email': 'wfrost@samford.edu',
+                'first_name': 'Dr. Winona',
+                'last_name': 'Frost',
+                'password': 'password',
+                'role': 'staff',
+                'phone_number': '205-xxx-xxx',
+                'bio': 'I love law! (Part of program 1',
+                'school_email': 'wfrost@samford.edu',
+                'student_id': 7136,
+                'program_id': 1
+            },
+            {
+                'username': 'barb.currie',
+                'email': 'bcurrie@samford.edu',
+                'first_name': 'Barb',
+                'last_name': 'Currie',
+                'password': 'password',
+                'role': 'faculty',
+                'phone_number': '205-xxx-xxx',
+                'bio': 'I love law! (Part of program 1',
+                'school_email': 'bcurrie@samford.edu',
+                'student_id': 5987,
+                'program_id': 1
+            },
+            {
+                'username': 'madlen.galloway',
+                'email': 'mgalloway@campbell.edu',
+                'first_name': 'Madlen',
+                'last_name': 'Galloway',
+                'password': 'password',
+                'role': 'student',
+                'phone_number': '205-xxx-xxx',
+                'bio': 'I love law! (Part of program 1',
+                'school_email': 'mgalloway@campbell.edu',
+                'student_id': 251,
+                'program_id': 1
+            },
+            {
+                'username': 'adrea.bender',
+                'email': 'abender@campbell.edu',
+                'first_name': 'Adrea',
+                'last_name': 'Bender',
+                'password': 'password',
+                'role': 'faculty',
+                'phone_number': '205-xxx-xxx',
+                'bio': 'I love law! (Part of program 2',
+                'school_email': 'abender@campbell.edu',
+                'student_id': 5112,
+                'program_id': 2
+            },
+            {
+                'username': 'collette.franklin',
+                'email': 'cfranklin@samford.edu',
+                'first_name': 'Collette',
+                'last_name': 'Franklin',
+                'password': 'password',
+                'role': 'faculty',
+                'phone_number': '205-xxx-xxx',
+                'bio': 'I love law! (Part of program 1',
+                'school_email': 'cfranklin@samford.edu',
+                'student_id': 6994,
+                'program_id': 1
+            },
+            {
+                'username': 'genni.stark',
+                'email': 'gstark@campbell.edu',
+                'first_name': 'Dr. Genni',
+                'last_name': 'Stark',
+                'password': 'password',
+                'role': 'staff',
+                'phone_number': '205-xxx-xxx',
+                'bio': 'I love law! (Part of program 2',
+                'school_email': 'gstark@campbell.edu',
+                'student_id': 6589,
+                'program_id': 2
+            },
+            {
+                'username': 'nani.goldstein',
+                'email': 'ngoldstein@samford.edu',
+                'first_name': 'Nani',
+                'last_name': 'Goldstein',
+                'password': 'password',
+                'role': 'student',
+                'phone_number': '205-xxx-xxx',
+                'bio': 'I love law! (Part of program 1',
+                'school_email': 'ngoldstein@samford.edu',
+                'student_id': 908,
+                'program_id': 1
+            },
+            {
+                'username': 'amberly.wiggins',
+                'email': 'awiggins@campbell.edu',
+                'first_name': 'Dr. Amberly',
+                'last_name': 'Wiggins',
+                'password': 'password',
+                'role': 'staff',
+                'phone_number': '205-xxx-xxx',
+                'bio': 'I love law! (Part of program 2',
+                'school_email': 'awiggins@campbell.edu',
+                'student_id': 6262,
+                'program_id': 2
+            },
+            {
+                'username': 'farica.cole',
+                'email': 'fcole@samford.edu',
+                'first_name': 'Farica',
+                'last_name': 'Cole',
+                'password': 'password',
+                'role': 'faculty',
+                'phone_number': '205-xxx-xxx',
+                'bio': 'I love law! (Part of program 1',
+                'school_email': 'fcole@samford.edu',
+                'student_id': 2343,
+                'program_id': 1
+            }
+        ]
 
-        CustomUser.objects.create_user(username="cherey.lancaster", email="me@example.com", first_name="Cherey",
-                                       last_name="Lancaster", password="password", role="faculty",
-                                       phone_number="205-***-****", bio="I love law!",
-                                       school_email="clancaster@campbell.edu", student_id=5927, program_id=1)
-
-        CustomUser.objects.create_user(username="kyrstin.hall", email="me@example.com", first_name="Dr. Kyrstin",
-                                       last_name="Hall", password="password", role="staff", phone_number="205-***-****",
-                                       bio="I love law!", school_email="khall@samford.edu", student_id=1066, program_id=1)
-
-        CustomUser.objects.create_user(username="astrid.justice", email="me@example.com", first_name="Dr. Astrid",
-                                       last_name="Justice", password="password", role="staff",
-                                       phone_number="205-***-****", bio="I love law!",
-                                       school_email="ajustice@samford.edu", student_id=7938, program_id=1)
-
-        CustomUser.objects.create_user(username="randi.may", email="me@example.com", first_name="Randi",
-                                       last_name="May", password="password", role="student",
-                                       phone_number="205-***-****", bio="I love law!", school_email="rmay@campbell.edu",
-                                       student_id=8795, program_id=1)
-
-        CustomUser.objects.create_user(username="sarena.shelton", email="me@example.com", first_name="Sarena",
-                                       last_name="Shelton", password="password", role="student",
-                                       phone_number="205-***-****", bio="I love law!",
-                                       school_email="sshelton@samford.edu", student_id=8489, program_id=1)
-
-        CustomUser.objects.create_user(username="marrilee.jordan", email="me@example.com", first_name="Marrilee",
-                                       last_name="Jordan", password="password", role="faculty",
-                                       phone_number="205-***-****", bio="I love law!",
-                                       school_email="mjordan@samford.edu", student_id=7766, program_id=1)
-
-        CustomUser.objects.create_user(username="albertine.norman", email="me@example.com", first_name="Dr. Albertine",
-                                       last_name="Norman", password="password", role="staff",
-                                       phone_number="205-***-****", bio="I love law!",
-                                       school_email="anorman@samford.edu", student_id=2626, program_id=1)
-
-        CustomUser.objects.create_user(username="mimi.high", email="me@example.com", first_name="Mimi",
-                                       last_name="High", password="password", role="student",
-                                       phone_number="205-***-****", bio="I love law!", school_email="mhigh@samford.edu",
-                                       student_id=4358, program_id=1)
-
-        CustomUser.objects.create_user(username="hallie.huffman", email="me@example.com", first_name="Hallie",
-                                       last_name="Huffman", password="password", role="student",
-                                       phone_number="205-***-****", bio="I love law!",
-                                       school_email="hhuffman@samford.edu", student_id=5378, program_id=1)
-
-        CustomUser.objects.create_user(username="vivianne.blackwell", email="me@example.com", first_name="Vivianne",
-                                       last_name="Blackwell", password="password", role="student",
-                                       phone_number="205-***-****", bio="I love law!",
-                                       school_email="vblackwell@campbell.edu", student_id=5432, program_id=1)
-
-        CustomUser.objects.create_user(username="sarah.poole", email="me@example.com", first_name="Sarah",
-                                       last_name="Poole", password="password", role="faculty",
-                                       phone_number="205-***-****", bio="I love law!",
-                                       school_email="spoole@samford.edu", student_id=8105, program_id=1)
-
-        CustomUser.objects.create_user(username="merrie.batchelor", email="me@example.com", first_name="Dr. Merrie",
-                                       last_name="Batchelor", password="password", role="staff",
-                                       phone_number="205-***-****", bio="I love law!",
-                                       school_email="mbatchelor@campbell.edu", student_id=7830, program_id=1)
-
-        CustomUser.objects.create_user(username="alidia.oh", email="me@example.com", first_name="Alidia",
-                                       last_name="Oh", password="password", role="faculty", phone_number="205-***-****",
-                                       bio="I love law!", school_email="aoh@samford.edu", student_id=5779, program_id=1)
-
-        CustomUser.objects.create_user(username="fanny.collier", email="me@example.com", first_name="Fanny",
-                                       last_name="Collier", password="password", role="faculty",
-                                       phone_number="205-***-****", bio="I love law!",
-                                       school_email="fcollier@campbell.edu", student_id=6265, program_id=1)
-
-        CustomUser.objects.create_user(username="fan.burton", email="me@example.com", first_name="Fan",
-                                       last_name="Burton", password="password", role="faculty",
-                                       phone_number="205-***-****", bio="I love law!",
-                                       school_email="fburton@samford.edu", student_id=145, program_id=1)
-
-        CustomUser.objects.create_user(username="dorette.beasley", email="me@example.com", first_name="Dorette",
-                                       last_name="Beasley", password="password", role="student",
-                                       phone_number="205-***-****", bio="I love law!",
-                                       school_email="dbeasley@samford.edu", student_id=7242, program_id=1)
-
-        CustomUser.objects.create_user(username="dalia.kaplan", email="me@example.com", first_name="Dalia",
-                                       last_name="Kaplan", password="password", role="faculty",
-                                       phone_number="205-***-****", bio="I love law!",
-                                       school_email="dkaplan@campbell.edu", student_id=4232, program_id=1)
-
-        CustomUser.objects.create_user(username="vivyan.riley", email="me@example.com", first_name="Vivyan",
-                                       last_name="Riley", password="password", role="faculty",
-                                       phone_number="205-***-****", bio="I love law!",
-                                       school_email="vriley@campbell.edu", student_id=2024, program_id=1)
-
-        CustomUser.objects.create_user(username="fayina.brandon", email="me@example.com", first_name="Fayina",
-                                       last_name="Brandon", password="password", role="student",
-                                       phone_number="205-***-****", bio="I love law!",
-                                       school_email="fbrandon@samford.edu", student_id=5658, program_id=1)
-
-        CustomUser.objects.create_user(username="eunice.creech", email="me@example.com", first_name="Dr. Eunice",
-                                       last_name="Creech", password="password", role="staff",
-                                       phone_number="205-***-****", bio="I love law!",
-                                       school_email="ecreech@samford.edu", student_id=743, program_id=1)
-
-        CustomUser.objects.create_user(username="gerianna.field", email="me@example.com", first_name="Dr. Gerianna",
-                                       last_name="Field", password="password", role="staff",
-                                       phone_number="205-***-****", bio="I love law!",
-                                       school_email="gfield@samford.edu", student_id=3201, program_id=1)
-
-        CustomUser.objects.create_user(username="george.stokes", email="me@example.com", first_name="George",
-                                       last_name="Stokes", password="password", role="student",
-                                       phone_number="205-***-****", bio="I love law!",
-                                       school_email="gstokes@campbell.edu", student_id=1657, program_id=1)
-
-        CustomUser.objects.create_user(username="alexina.keith", email="me@example.com", first_name="Dr. Alexina",
-                                       last_name="Keith", password="password", role="staff",
-                                       phone_number="205-***-****", bio="I love law!",
-                                       school_email="akeith@campbell.edu", student_id=6100, program_id=1)
-
-        CustomUser.objects.create_user(username="sofia.allred", email="me@example.com", first_name="Sofia",
-                                       last_name="Allred", password="password", role="faculty",
-                                       phone_number="205-***-****", bio="I love law!",
-                                       school_email="sallred@campbell.edu", student_id=4295, program_id=1)
-
-        CustomUser.objects.create_user(username="maure.barber", email="me@example.com", first_name="Maure",
-                                       last_name="Barber", password="password", role="faculty",
-                                       phone_number="205-***-****", bio="I love law!",
-                                       school_email="mbarber@campbell.edu", student_id=1266, program_id=1)
-
-        CustomUser.objects.create_user(username="jamie.cline", email="me@example.com", first_name="Jamie",
-                                       last_name="Cline", password="password", role="faculty",
-                                       phone_number="205-***-****", bio="I love law!",
-                                       school_email="jcline@campbell.edu", student_id=1599, program_id=1)
-
-        CustomUser.objects.create_user(username="aloisia.archer", email="me@example.com", first_name="Aloisia",
-                                       last_name="Archer", password="password", role="faculty",
-                                       phone_number="205-***-****", bio="I love law!",
-                                       school_email="aarcher@campbell.edu", student_id=1407, program_id=1)
-
-        CustomUser.objects.create_user(username="jacquetta.bailey", email="me@example.com", first_name="Dr. Jacquetta",
-                                       last_name="Bailey", password="password", role="staff",
-                                       phone_number="205-***-****", bio="I love law!",
-                                       school_email="jbailey@samford.edu", student_id=2681, program_id=1)
-
-        CustomUser.objects.create_user(username="anabel.duncan", email="me@example.com", first_name="Anabel",
-                                       last_name="Duncan", password="password", role="faculty",
-                                       phone_number="205-***-****", bio="I love law!",
-                                       school_email="aduncan@samford.edu", student_id=6556, program_id=1)
+        for user_data in user:
+            CustomUser.objects.create_user(username=user_data['username'], email=user_data['email'], first_name=user_data['first_name'],
+                                           last_name=user_data['last_name'], password=user_data['password'], role=user_data['role'],
+                                           phone_number=user_data['phone_number'], bio=user_data['bio'],school_email=user_data['school_email'],
+                                           student_id=user_data['student_id'], program_id=user_data['program_id'])
