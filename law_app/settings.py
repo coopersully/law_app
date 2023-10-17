@@ -160,14 +160,14 @@ LOGOUT_REDIRECT_URL = 'home'
 AUTH_USER_MODEL = "accounts.CustomUser"
 
 # Use channels for routing
-ASGI_APPLICATION = 'law_app.routing.application'
+ASGI_APPLICATION = 'law_app.asgi.application'
 
 # Channel layer settings
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
+            "hosts": [('redis://default:uwMZhtv2HYwEXmgBODwQZzjVytvaa4HI@redis-17235.c240.us-east-1-3.ec2.cloud.redislabs.com:17235')]
         },
     },
 }
