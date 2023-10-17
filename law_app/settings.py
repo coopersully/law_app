@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 
     # Installed
     'bootstrap5',
+    'channels',
 
     # Custom
     'accounts',
@@ -157,3 +158,16 @@ LOGOUT_REDIRECT_URL = 'home'
 
 # Authentication
 AUTH_USER_MODEL = "accounts.CustomUser"
+
+# Use channels for routing
+ASGI_APPLICATION = 'law_app.routing.application'
+
+# Channel layer settings
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
