@@ -3,6 +3,7 @@ from django.db import models
 
 class Program(models.Model):
     year = models.IntegerField(4)
+    location = models.CharField(max_length=20, null=True)
     title = models.CharField(max_length=50)
 
     def __str__(self):
