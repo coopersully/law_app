@@ -41,4 +41,5 @@ class Command(BaseCommand):
             Announcement.objects.create(
                 title=announcement_data['title'],
                 content=announcement_data['content'],
+                program_id=1
             )

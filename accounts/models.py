@@ -1,6 +1,12 @@
 from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.db import models
 
+class Program(models.Model):
+    year = models.IntegerField(4)
+    title = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.title
 
 class CustomUser(AbstractUser):
     ROLE_CHOICES = [
@@ -16,6 +22,7 @@ class CustomUser(AbstractUser):
     school_email = models.EmailField(max_length=254, unique=True)
     student_id = models.CharField(max_length=20, blank=True, null=True)
     profile_pic = models.ImageField(default='default_profile_pic.jpg', upload_to='profile_pics/')
+    program = models.ForeignKey(Program, on_delete=models.CASCADE, null=True)
 
     # Add related_name to prevent reverse accessor clashes
     groups = models.ManyToManyField(
@@ -37,10 +44,3 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.username
-
-class Program(models.Model):
-    year = models.IntegerField(4)
-    title = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.title

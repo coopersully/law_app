@@ -46,4 +46,5 @@ class Command(BaseCommand):
                 datetime=event_data['datetime'],
                 map=event_data['map'],
                 owner_id=1,
+                program_id=1
             )
