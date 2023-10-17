@@ -10,7 +10,7 @@ class Command(BaseCommand):
         events = [
             {
                 'title': 'Law Seminar: Cybersecurity in the Digital Age',
-                'description': 'Join us for an engaging seminar on cybersecurity and its legal implications in the digital age. Expert speakers will discuss data privacy, cyber threats, and legal strategies to protect businesses.',
+                'description': 'Join us for an engaging seminar on cybersecurity and its legal implications in the digital age. Expert speakers will discuss data privacy, cyber threats, and legal strategies to protect businesses. (Part of Program 1)',
                 'location': 'Samford University Law School Auditorium',
                 'datetime': '2023-10-15 14:00:00',
                 'map': 'https://maps.app.goo.gl/xNCshWcreRHSwUC59',
@@ -18,7 +18,7 @@ class Command(BaseCommand):
             },
             {
                 'title': 'Mock Trial Competition',
-                'description': 'Participate in our annual Mock Trial Competition and showcase your advocacy skills. This event provides an excellent opportunity to gain courtroom experience and network with legal professionals.',
+                'description': 'Participate in our annual Mock Trial Competition and showcase your advocacy skills. This event provides an excellent opportunity to gain courtroom experience and network with legal professionals. (Part of Program 1)',
                 'location': 'Mock Trial Courtroom, Law Building',
                 'datetime': '2023-11-05 09:30:00',
                 'map': 'https://maps.app.goo.gl/xNCshWcreRHSwUC59',
@@ -26,7 +26,7 @@ class Command(BaseCommand):
             },
             {
                 'title': 'Legal Tech Workshop: AI in Law',
-                'description': 'Discover the latest trends in legal technology and artificial intelligence. Learn how AI is revolutionizing the legal field and attend hands-on workshops with AI tools used in the industry.',
+                'description': 'Discover the latest trends in legal technology and artificial intelligence. Learn how AI is revolutionizing the legal field and attend hands-on workshops with AI tools used in the industry. (Part of Program 2)',
                 'location': 'Law School Conference Room',
                 'datetime': '2023-11-20 16:00:00',
                 'map': 'https://maps.app.goo.gl/xNCshWcreRHSwUC59',
@@ -34,7 +34,7 @@ class Command(BaseCommand):
             },
             {
                 'title': 'Moot Court Competition Finals',
-                'description': 'Witness the final round of our Moot Court Competition. Top students will argue a complex case before a panel of judges. Attend and support your peers in this prestigious event.',
+                'description': 'Witness the final round of our Moot Court Competition. Top students will argue a complex case before a panel of judges. Attend and support your peers in this prestigious event. (Part of Program 2)',
                 'location': 'Moot Courtroom, Law Building',
                 'datetime': '2023-12-10 13:00:00',
                 'map': 'https://maps.app.goo.gl/xNCshWcreRHSwUC59',
