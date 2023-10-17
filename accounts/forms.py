@@ -7,7 +7,7 @@ from accounts.models import CustomUser
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
-        fields = ("username", "first_name", "last_name", "email", "phone_number", "school_email", "student_id")
+        fields = ("username", "first_name", "last_name", "email", "phone_number", "school_email", "student_id", "program")
         labels = {
             'school_email': 'Samford Email address',
             'student_id': 'Samford Student ID'
