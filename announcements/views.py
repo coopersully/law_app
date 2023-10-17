@@ -13,6 +13,9 @@ def announcements(request):
         Q(content__icontains=search_term)
     ).order_by('-time_created')
 
+    if (request.user.role != 'admin' and request.user.role != 'admin'):
+        announcements = announcements.filter(program=request.user.program)
+
     # check if allowed user
     allowedRoles = ['staff', 'Staff', 'admin', 'Admin']
     allowed_user = any([request.user.role == allowedRole for allowedRole in allowedRoles])

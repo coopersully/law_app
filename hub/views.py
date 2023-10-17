@@ -33,6 +33,8 @@ def list_documents(request):
             Q(title__icontains=search_query) |
             Q(description__icontains=search_query)
         )
+    if (request.user.role != 'admin' and request.user.role != 'admin'):
+        documents = documents.filter(program=request.user.program)
     documents.order_by("title")
 
     # check if allowed user

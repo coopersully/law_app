@@ -12,6 +12,8 @@ def agenda(request):
 
     # Fetch all events
     events = Event.objects.all()
+    if(request.user.role != 'admin' and request.user.role != 'admin'):
+        events = events.filter(program=request.user.program)
 
     # Apply the search filter
     if search_query:
