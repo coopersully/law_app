@@ -12,13 +12,19 @@ def announcements(request):
         Q(title__icontains=search_term) |
         Q(content__icontains=search_term)
     ).order_by('-time_created')
-    context = {'page_name': 'announcements', 'announcements': announcements, 'search_term': search_term}
+
+    # check if allowed user
+    allowedRoles = ['staff', 'Staff', 'admin', 'Admin']
+    allowed_user = any([request.user.role == allowedRole for allowedRole in allowedRoles])
+
+    context = {'page_name': 'announcements', 'announcements': announcements, 'search_term': search_term, 'allowed_user': allowed_user}
     return render(request, 'announcements/index.html', context)
 
 
 def announcements_new(request):
     # Check if the user is an admin (staff or superuser)
-    if not (request.user.is_staff or request.user.is_superuser):
+    allowedRoles = ['staff', 'Staff', 'admin', 'Admin']
+    if not (any([request.user.role == allowedRole for allowedRole in allowedRoles])):
         return HttpResponseForbidden("You don't have permission to access this page.")
 
     if request.method == "POST":

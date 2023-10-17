@@ -8,7 +8,8 @@ from .models import UploadedDocument
 
 def upload_document(request):
     # Check if the user is an admin (staff or superuser)
-    if not (request.user.is_staff or request.user.is_superuser):
+    allowedRoles = ['staff', 'Staff', 'admin', 'Admin']
+    if not (any([request.user.role == allowedRole for allowedRole in allowedRoles])):
         return HttpResponseForbidden("You don't have permission to access this page.")
 
     if request.method == 'POST':
@@ -33,7 +34,12 @@ def list_documents(request):
             Q(description__icontains=search_query)
         )
     documents.order_by("title")
-    context = {'page_name': 'hub', 'documents': documents}
+
+    # check if allowed user
+    allowedRoles = ['staff', 'Staff', 'admin', 'Admin']
+    allowed_user = any([request.user.role == allowedRole for allowedRole in allowedRoles])
+
+    context = {'page_name': 'hub', 'documents': documents, 'allowed_user':allowed_user}
     return render(request, 'hub/index.html', context)
 
 
