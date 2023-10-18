@@ -53,35 +53,37 @@
 
 {% block scripts %}
     <script>
-        // Define roomName if it hasn't been defined
-        const roomName = 'some_room_name';  // Replace with the actual room name
+        const roomName = 'some_room_name';
 
         // Fetch past messages
         fetch(`/chat/${roomName}/past_messages/`)
             .then(response => response.json())
             .then(data => {
                 const messages = data.messages;
-                const chatWindow = document.querySelector('.chat-container');  // Changed this line
+                const chatWindow = document.querySelector('.chat-container');
                 for (let msg of messages) {
                     const messageElement = document.createElement('div');
-                    messageElement.className = 'msg my-3 msg-incoming';  // Added class for styling
+                    messageElement.className = 'msg my-3 msg-incoming';
                     messageElement.textContent = msg.content;
                     chatWindow.appendChild(messageElement);
                 }
             });
 
-        // WebSocket consumer routing.
+        // Create a WebSocket for the given room
         const chatSocket = new WebSocket(`ws://${window.location.host}/ws/chat/${roomName}/`);
 
+        // When a message is received...
         chatSocket.onmessage = function (e) {
             const data = JSON.parse(e.data);
             document.querySelector('.chat-container').innerHTML += ('<br><span class="msg my-3 msg-incoming">' + data.message + '</span>');
         };
 
+        // When the socket is closed...
         chatSocket.onclose = function (e) {
             console.error('Chat socket closed unexpectedly');
         };
 
+        // When a message is sent...
         document.querySelector('.btn-primary').onclick = function (e) {
             const messageInput = document.querySelector('.form-control');
             const message = messageInput.value;
