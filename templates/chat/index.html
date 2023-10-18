@@ -69,13 +69,9 @@
                     chatWindow.appendChild(messageElement);
                 }
             });
-    </script>
-    <script>
-        // Replace this line with your WebSocket consumer routing.
-        const chatSocket = new WebSocket(
-            'ws://' + window.location.host +
-            '/ws/chat/some_room_name/'
-        );
+
+        // WebSocket consumer routing.
+        const chatSocket = new WebSocket(`ws://${window.location.host}/ws/chat/${roomName}/`);
 
         chatSocket.onmessage = function (e) {
             const data = JSON.parse(e.data);
