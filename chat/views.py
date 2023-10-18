@@ -14,6 +14,11 @@ def chat(request):
 
 
 def get_past_messages(request, room_name):
-    messages = Message.objects.filter(room_name=room_name).order_by('-timestamp')[:50]
-    messages_list = list(messages.values('content', 'timestamp'))
-    return JsonResponse({'messages': messages_list})
+    last_10_messages = Message.objects.filter(room_name=room_name).order_by('-timestamp')[:10]
+    messages = [{
+        'content': message.content,
+        'author': message.author.username,
+        'timestamp': str(message.timestamp)
+    } for message in reversed(last_10_messages)]
+
+    return JsonResponse({'messages': messages})

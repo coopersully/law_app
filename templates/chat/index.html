@@ -64,10 +64,11 @@
                 for (let msg of messages) {
                     const messageElement = document.createElement('div');
                     messageElement.className = 'msg my-3 msg-incoming';
-                    messageElement.textContent = msg.content;
+                    messageElement.innerHTML = `<strong>${msg.author}</strong>: ${msg.content} <small>${msg.timestamp}</small>`;
                     chatWindow.appendChild(messageElement);
                 }
             });
+
 
         // Create a WebSocket for the given room
         const chatSocket = new WebSocket(`ws://${window.location.host}/ws/chat/${roomName}/`);
@@ -75,7 +76,7 @@
         // When a message is received...
         chatSocket.onmessage = function (e) {
             const data = JSON.parse(e.data);
-            document.querySelector('.chat-container').innerHTML += ('<br><span class="msg my-3 msg-incoming">' + data.message + '</span>');
+            document.querySelector('.chat-container').innerHTML += (`<br><div class="msg my-3 msg-incoming"><strong>${data.author}</strong>: ${data.message} <small>${data.timestamp}</small></div>`);
         };
 
         // When the socket is closed...
