@@ -163,11 +163,15 @@ AUTH_USER_MODEL = "accounts.CustomUser"
 ASGI_APPLICATION = 'law_app.asgi.application'
 
 # Channel layer settings
+REDIS_USERNAME = config['REDIS_USERNAME']
+REDIS_PASSWORD = config['REDIS_PASSWORD']
+REDIS_ADDRESS = config['REDIS_ADDRESS']
+REDIS_PORT = config['REDIS_PORT']
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('redis://default:uwMZhtv2HYwEXmgBODwQZzjVytvaa4HI@redis-17235.c240.us-east-1-3.ec2.cloud.redislabs.com:17235')]
+            "hosts": [(f'redis://{REDIS_USERNAME}:{REDIS_PASSWORD}@{REDIS_ADDRESS}:{REDIS_PORT}')]
         },
     },
 }
