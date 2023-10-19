@@ -73,6 +73,7 @@
         // When a message is received...
         chatSocket.onmessage = function (e) {
             const data = JSON.parse(e.data);
+            if (data.author === currentUsername) return;
             addMessage(data.message, data.author, data.timestamp);
         };
 
