@@ -63,7 +63,7 @@
             .then(data => {
                 const messages = data.messages;
                 for (let message_data of messages) {
-                    addMessage(message_data.id, message_data.content, message_data.author, message_data.timestamp);
+                    addMessage(message_data.content, message_data.author, message_data.timestamp);
                 }
             });
 
@@ -73,7 +73,8 @@
         // When a message is received...
         chatSocket.onmessage = function (e) {
             const data = JSON.parse(e.data);
-            addMessage(data.id, data.message, data.author, data.timestamp);
+            if (data.author === currentUsername) return;
+            addMessage(data.message, data.author, data.timestamp);
         };
 
         // When the socket is closed...
@@ -82,42 +83,19 @@
         };
 
         // When a message is sent...
-        document.addEventListener('click', async function (e) {
+        document.addEventListener('click', function (e) {
             if (e.target && e.target.classList.contains('btn-primary')) {
                 const messageInput = document.querySelector('.form-control');
                 const message = messageInput.value;
-
-                // Register the message and get an ID
-                const response = await fetch('/register_message/', {
-                    method: 'POST',
-                    body: JSON.stringify({message: message}),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-                const data = await response.json();
-                const message_id = data.message_id;
-
-                // Send the message via WebSocket
                 chatSocket.send(JSON.stringify({
-                    'message': message,
-                    'message_id': message_id
+                    'message': message
                 }));
-
-                // Add the message to the chat window
-                addMessage(message, currentUsername, 'just now', message_id);
+                addMessage(message, currentUsername, 'just now');
                 messageInput.value = '';
             }
         });
 
-        const messageIds = new Set();  // To keep track of message IDs
-
-        function addMessage(id, message, user, timestamp) {
-            if (messageIds.has(id)) {
-                return;  // Message already exists
-            }
-            messageIds.add(id);  // Add the new message ID
-
+        function addMessage(message, user, timestamp) {
             let type = (currentUsername === user) ? "outgoing" : "incoming";
             chatContainer.insertAdjacentHTML('beforeend', `
                 <div class="msg my-3 msg-${type}">
@@ -127,6 +105,7 @@
                 </div>
             `);
         }
+
 
         function convertToLocalTime(isoTimestamp) {
             const date = new Date(isoTimestamp);
