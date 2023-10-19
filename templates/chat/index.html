@@ -37,13 +37,19 @@
                         </div>
 
                         <!-- Message Bar -->
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Type a message...">
-                            <!-- Search Button -->
-                            <button class="btn btn-primary">
-                                Send
-                            </button>
-                        </div>
+                        <form id="messageForm" method="post">
+                            {% csrf_token %}
+                            <div class="input-group">
+                                <label for="message"></label>
+                                <input id="message" name="message" type="text" class="form-control"
+                                       placeholder="Type a message...">
+
+                                <!-- Send Button -->
+                                <button class="btn btn-primary">
+                                    Send
+                                </button>
+                            </div>
+                        </form>
 
                     </div>
                 </div>
@@ -53,7 +59,7 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="{% static 'js/message-helpers.js' %}" "></script>
+    <script src="{% static 'js/message-helpers.js' %}"></script>
     <script>
         const roomName = 'some_room_name';
         const currentUsername = '{{ user.username }}';
@@ -84,8 +90,9 @@
         };
 
         // When a message is sent...
-        document.addEventListener('click', function (e) {
-            if (e.target && e.target.classList.contains('btn-primary')) {
+        document.addEventListener('submit', function (e) {
+            if (e.target && e.target.id === 'messageForm') {
+                e.preventDefault();
                 const messageInput = document.querySelector('.form-control');
                 const message = messageInput.value;
                 chatSocket.send(JSON.stringify({
