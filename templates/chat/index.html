@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Chat Page{% endblock %}
 
@@ -52,6 +53,7 @@
 {% endblock %}
 
 {% block scripts %}
+    <script src="{% static 'js/message-helpers.js' %}" "></script>
     <script>
         const roomName = 'some_room_name';
         const currentUsername = '{{ user.username }}';
@@ -63,7 +65,7 @@
             .then(data => {
                 const messages = data.messages;
                 for (let message_data of messages) {
-                    addMessage(message_data.content, message_data.author, message_data.timestamp);
+                    addMessage(message_data, 'P');
                 }
             });
 
@@ -73,8 +75,7 @@
         // When a message is received...
         chatSocket.onmessage = function (e) {
             const data = JSON.parse(e.data);
-            if (data.author === currentUsername) return;
-            addMessage(data.message, data.author, data.timestamp);
+            addMessage(data, 'R');
         };
 
         // When the socket is closed...
@@ -90,52 +91,20 @@
                 chatSocket.send(JSON.stringify({
                     'message': message
                 }));
-                addMessage(message, currentUsername, 'just now');
                 messageInput.value = '';
             }
         });
 
-        function addMessage(message, user, timestamp) {
-            let type = (currentUsername === user) ? "outgoing" : "incoming";
+        function addMessage(data, source) {
+            let type = (currentUsername === data.author) ? "outgoing" : "incoming";
             chatContainer.insertAdjacentHTML('beforeend', `
+                <!-- Message #${source}_${data.id} -->
                 <div class="msg my-3 msg-${type}">
-                    <small class="msg-author">${user}</small><br>
-                    ${message}<br>
-                    <small class="msg-timestamp">${convertToLocalTime(timestamp)}</small>
+                    <small class="msg-author">${data.author}</small><br>
+                    ${data.message}<br>
+                    <small class="msg-timestamp">${convertToLocalTime(data.timestamp)}</small>
                 </div>
             `);
-        }
-
-
-        function convertToLocalTime(isoTimestamp) {
-            const date = new Date(isoTimestamp);
-            const now = new Date();
-
-            const isSameDay = date.getDate() === now.getDate() &&
-                date.getMonth() === now.getMonth() &&
-                date.getFullYear() === now.getFullYear();
-
-            const isYesterday = date.getDate() === now.getDate() - 1 &&
-                date.getMonth() === now.getMonth() &&
-                date.getFullYear() === now.getFullYear();
-
-            if (isSameDay) {
-                const timeOptions = {hour: '2-digit', minute: '2-digit'};
-                return date.toLocaleTimeString('en-US', timeOptions);
-            }
-
-            if (isYesterday) {
-                const timeOptions = {hour: '2-digit', minute: '2-digit'};
-                return `Yesterday at ${date.toLocaleTimeString('en-US', timeOptions)}`;
-            }
-
-            if (date.getFullYear() === now.getFullYear()) {
-                const dateOptions = {month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'};
-                return date.toLocaleDateString('en-US', dateOptions);
-            }
-
-            const dateOptions = {year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'};
-            return date.toLocaleDateString('en-US', dateOptions);
         }
     </script>
 {% endblock %}
