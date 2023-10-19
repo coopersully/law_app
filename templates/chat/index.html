@@ -54,21 +54,18 @@
 {% block scripts %}
     <script>
         const roomName = 'some_room_name';
+        const currentUsername = '{{ user.username }}';
+        const chatContainer = document.querySelector('.chat-container');
 
         // Fetch past messages
         fetch(`/chat/${roomName}/past_messages/`)
             .then(response => response.json())
             .then(data => {
                 const messages = data.messages;
-                const chatWindow = document.querySelector('.chat-container');
-                for (let msg of messages) {
-                    const messageElement = document.createElement('div');
-                    messageElement.className = 'msg my-3 msg-incoming';
-                    messageElement.innerHTML = `<strong>${msg.author}</strong>: ${msg.content} <small>${msg.timestamp}</small>`;
-                    chatWindow.appendChild(messageElement);
+                for (let message_data of messages) {
+                    addMessage(message_data.content, message_data.author, message_data.timestamp);
                 }
             });
-
 
         // Create a WebSocket for the given room
         const chatSocket = new WebSocket(`ws://${window.location.host}/ws/chat/${roomName}/`);
@@ -76,7 +73,7 @@
         // When a message is received...
         chatSocket.onmessage = function (e) {
             const data = JSON.parse(e.data);
-            document.querySelector('.chat-container').innerHTML += (`<br><div class="msg my-3 msg-incoming"><strong>${data.author}</strong>: ${data.message} <small>${data.timestamp}</small></div>`);
+            addMessage(data.message, data.author, data.timestamp);
         };
 
         // When the socket is closed...
@@ -85,15 +82,22 @@
         };
 
         // When a message is sent...
-        document.querySelector('.btn-primary').onclick = function (e) {
-            const messageInput = document.querySelector('.form-control');
-            const message = messageInput.value;
-            chatSocket.send(JSON.stringify({
-                'message': message
-            }));
-            document.querySelector('.chat-container').innerHTML += ('<br><span class="msg my-3 msg-outgoing">' + message + '</span>');
-            messageInput.value = '';
-        };
+        document.addEventListener('click', function (e) {
+            if (e.target && e.target.classList.contains('btn-primary')) {
+                const messageInput = document.querySelector('.form-control');
+                const message = messageInput.value;
+                chatSocket.send(JSON.stringify({
+                    'message': message
+                }));
+                addMessage(message, currentUsername, 'just now');
+                messageInput.value = '';
+            }
+        });
+
+        function addMessage(message, user, timestamp) {
+            let type = (currentUsername === user) ? "outgoing" : "incoming";
+            chatContainer.insertAdjacentHTML('beforeend', `<br><div class="msg my-3 msg-${type}"><strong>${user}</strong>: ${message} <small>${timestamp}</small></div>`);
+        }
     </script>
 {% endblock %}
 
