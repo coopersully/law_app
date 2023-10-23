@@ -90,36 +90,15 @@
         };
 
         // When a message is sent...
-        document.addEventListener('submit', async function (e) {
+        document.addEventListener('submit', function (e) {
             if (e.target && e.target.id === 'messageForm') {
                 e.preventDefault();
-
-                const formData = new FormData(e.target);
-                const message = formData.get('message');
-
-                const csrfToken = formData.get('csrfmiddlewaretoken');  // Get the CSRF token
-
-                // Register the message and get an ID
-                const response = await fetch('/chat/register_message/', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRFToken': csrfToken
-                    },
-                    body: JSON.stringify({
-                        message: message,
-                        room_name: roomName
-                    })
-                });
-                const data = await response.json();
-                const message_id = data.message_id;
-
-                console.log(`Sending message with an id of ${id} and content ${message}`)
+                const messageInput = document.querySelector('.form-control');
+                const message = messageInput.value;
                 chatSocket.send(JSON.stringify({
-                    'id': message_id,
-                    'message': message,
-                    'room_name': roomName,
+                    'message': message
                 }));
+                messageInput.value = '';
             }
         });
 
