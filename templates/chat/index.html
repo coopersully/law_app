@@ -102,10 +102,18 @@
             }
         });
 
+        const addedMessages = new Set();  // To keep track of added messages
+
         function addMessage(data, source) {
+            const uniqueId = `${data.timestamp}_${data.message}`;
+            if (addedMessages.has(uniqueId)) {
+                return;  // Skip adding the message if it already exists
+            }
+            addedMessages.add(uniqueId);  // Add the unique ID to the set
+
             let type = (currentUsername === data.author) ? "outgoing" : "incoming";
             chatContainer.insertAdjacentHTML('beforeend', `
-                <!-- Message #${source}_${data.id} -->
+                <!-- Message #${source}_${data.id} (U #${uniqueId}) -->
                 <div class="msg my-3 msg-${type}">
                     <small class="msg-author">${data.author}</small><br>
                     ${data.message}<br>
