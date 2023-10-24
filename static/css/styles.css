@@ -47,11 +47,6 @@ body {
     overflow-y: auto;
 }
 
-.scrollable-card-container-alt {
-    height: 68vh;
-    overflow-y: auto;
-}
-
 .circle-icon {
     width: 2em;
     height: 2em;
@@ -105,4 +100,8 @@ card {
 
 .bg-night {
     background: linear-gradient(45deg, #112233, #3D4D5E);
+}
+
+.border-25 {
+    border-radius: 25px;
 }

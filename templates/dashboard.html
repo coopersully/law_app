@@ -6,7 +6,7 @@
 {% block content %}
     <div class="col-12 col-md-10 mx-auto my-5 full-screen-h">
 
-        <div class="card bg-{{ time_of_day }} px-5 py-5 mb-3 text-light">
+        <div class="card bg-{{ time_of_day }} px-5 py-5 mb-3 text-light border-25">
             <div class="row">
                 <div class="col-md-8">
                     <p class="lead">Welcome back, {{ user.first_name }}.</p>
@@ -15,112 +15,89 @@
                 </div>
                 <div class="col-md-4 text-center justify-content-center">
                     <img src="https://openweathermap.org/img/wn/{{ icon }}@2x.png"
-                         class="img-fluid" style="height: 100%; width: auto;" >
+                         class="img-fluid" style="height: 100%; width: auto;">
                 </div>
             </div>
         </div>
 
         <div class="row">
-            <!-- Left half of the Dashboard -->
             <div class="col-lg-6">
-                <div class="card" style="height: 100%">
-                    <div class="card-body">
-                        <h5>
-                            <i class="fa-solid fa-calendar bg-primary text-light circle-icon"></i>
-                            Week at a Glance
-                        </h5>
+                <div style="height: 100%;">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="announcements-tab" data-bs-toggle="tab"
+                               href="#announcements" role="tab" aria-controls="announcements" aria-selected="true">Announcements</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="events-tab" data-bs-toggle="tab" href="#events" role="tab"
+                               aria-controls="events" aria-selected="false">Events</a>
+                        </li>
+                    </ul>
 
-                        <hr>
-
-                        <div class="scrollable-card-container-alt pe-4">
-                            {% if events %}
-                                {% for event in events %}
-                                    <div class="card mb-3">
+                    <div class="tab-content mt-3" id="myTabContent">
+                        <div class="tab-pane fade show active" id="announcements" role="tabpanel"
+                             aria-labelledby="announcements-tab">
+                            <!-- Announcements Code -->
+                            <div class="scrollable-card-container">
+                                {% if announcements %}
+                                    {% for announcement in announcements %}
+                                        <div class="card border-25 mb-3">
+                                            <div class="card-body">
+                                                <h6 class="card-title">{{ announcement.title }}</h6>
+                                                <p class="card-text">{{ announcement.content }}</p>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% else %}
+                                    <div class="card">
                                         <div class="card-body">
-                                            <h6 class="card-title">{{ event.title }}</h6>
-                                            <p class="card-text">{{ event.description }}</p>
+                                            <h3>
+                                                <i class="fa-solid fa-check"></i> You're all caught up!
+                                            </h3>
+                                            <p>No announcements here. Take some time for self-care and some
+                                                well-deserved relaxation.</p>
                                         </div>
                                     </div>
-                                {% endfor %}
-                            {% else %}
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h3>
-                                            <i class="fa-solid fa-check"></i> You're all caught up!
-                                        </h3>
-                                        <p>You don't have any upcoming events. Take some time for yourself, you deserve
-                                            it.</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="events" role="tabpanel" aria-labelledby="events-tab">
+                            <!-- Events Code -->
+                            <div class="scrollable-card-container">
+                                {% if events %}
+                                    {% for event in events %}
+                                        <div class="card border-25 mb-3">
+                                            <div class="card-body">
+                                                <h6 class="card-title">{{ event.title }}</h6>
+                                                <p class="card-text">{{ event.description }}</p>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% else %}
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h3>
+                                                <i class="fa-solid fa-check"></i> You're all caught up!
+                                            </h3>
+                                            <p>You don't have any upcoming events. Take some time for yourself, you
+                                                deserve it.</p>
+                                        </div>
                                     </div>
-                                </div>
-                            {% endif %}
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Right half of the Dashboard -->
             <div class="col-lg-6">
-                <div class="card mb-4">
-                    <div class="card-body">
-
-                        <h5>
-                            <i class="fa-solid fa-bullhorn bg-primary text-light circle-icon"></i>
-                            Announcements
-                        </h5>
-
-                        <hr>
-
-                        <div class="scrollable-card-container pe-4">
-                            {% if announcements %}
-                                {% for announcement in announcements %}
-                                    <div class="card mb-3">
-                                        <div class="card-body">
-                                            <h6 class="card-title">{{ announcement.title }}</h6>
-                                            <p class="card-text">{{ announcement.content }}</p>
-                                        </div>
-                                    </div>
-                                {% endfor %}
-                            {% else %}
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h3>
-                                            <i class="fa-solid fa-check"></i> You're all caught up!
-                                        </h3>
-                                        <p>No announcements here. Take some time for self-care and some well-deserved
-                                            relaxation.</p>
-                                    </div>
-                                </div>
-                            {% endif %}
+                <div class="card border-25" style="height: 100%;">
+                    <div class="card-body text-center">
+                        <div class="card-text">
+                            <p class="fw-bolder fs-4">No unread messages.</p>
+                            <p>Nothing to see here; time to rest, unwind, and relax.</p>
                         </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-body">
-
-                        <h5>
-                            <i class="fa-solid fa-comments bg-primary text-light circle-icon"></i>
-                            Recent Messages
-                        </h5>
-
-                        <hr>
-
-                        <div class="scrollable-card-container pe-4">
-                            {% if recent_messages %}
-                                {% for msg in recent_messages %}
-                                    <!-- Fill this in when, you know, the chat works. -->
-                                {% endfor %}
-                            {% else %}
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h3>
-                                            <i class="fa-solid fa-check"></i> You're all caught up!
-                                        </h3>
-                                        <p>You don't have any recent messages. Time to unplug and unwind.</p>
-                                    </div>
-                                </div>
-                            {% endif %}
-                        </div>
+                        <img src="{% static 'images/people/relax_at_home.svg' %}"
+                             class="img-fluid" style="width: 50%; height: auto;" alt="Girl relaxing at home">
                     </div>
                 </div>
             </div>
