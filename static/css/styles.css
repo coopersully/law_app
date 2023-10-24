@@ -89,3 +89,23 @@ body {
 card {
     border: none;
 }
+
+/* Morning Background with Blue Tint */
+.bg-morning {
+    background: linear-gradient(45deg, #1188CC, #90C3D4);
+}
+
+/* Afternoon Background with Blue Tint */
+.bg-afternoon {
+    background: linear-gradient(45deg, #1177AA, #89B2C3);
+}
+
+/* Evening Background with Blue Tint */
+.bg-evening {
+    background: linear-gradient(45deg, #115566, #7F9FA9);
+}
+
+/* Night Background with Blue Tint */
+.bg-night {
+    background: linear-gradient(45deg, #112233, #3D4D5E);
+}
