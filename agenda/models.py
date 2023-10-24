@@ -11,6 +11,7 @@ class Event(models.Model):
     datetime = models.DateTimeField()
     owner = models.ForeignKey(CustomUser, related_name='events', on_delete=models.CASCADE)
     program = models.ForeignKey(Program, on_delete=models.CASCADE, null=True)
+    transportation = models.CharField(max_length=750, null=True)
 
     def __str__(self):
         return self.title
