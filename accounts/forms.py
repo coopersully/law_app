@@ -9,8 +9,8 @@ class CustomUserCreationForm(UserCreationForm):
         model = CustomUser
         fields = ("username", "first_name", "last_name", "email", "phone_number", "school_email", "student_id", "program")
         labels = {
-            'school_email': 'Samford Email address',
-            'student_id': 'Samford Student ID'
+            'school_email': 'School Email address',
+            'student_id': 'School Student ID'
         }
 
 
@@ -20,7 +20,7 @@ class CustomUserChangeForm(UserChangeForm):
         fields = ("profile_pic", "username", "first_name", "last_name", "bio", "email", "phone_number", "school_email", "student_id")
         labels = {
             'profile_pic': 'Profile Picture',
-            'school_email': 'Samford Email address',
-            'student_id': 'Samford Student ID',
+            'school_email': 'School Email address',
+            'student_id': 'School Student ID',
             'bio': 'Biography'
         }
