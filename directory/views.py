@@ -20,6 +20,9 @@ def directory(request):
             Q(username__icontains=search_query)
         )
 
+    if (request.user.role != 'admin' and request.user.role != 'admin'):
+        users = users.filter(program=request.user.program)
+
     users = users.order_by("first_name")
 
     context = {

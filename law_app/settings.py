@@ -36,6 +36,8 @@ DEBUG = config['DEBUG']
 
 ALLOWED_HOSTS = config['DJANGO_ALLOWED_HOSTS'].split(",")
 
+#API Keys
+OPEN_WEATHER = config['OPEN_WEATHER_API_KEY']
 
 # Application definition
 

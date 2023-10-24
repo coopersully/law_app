@@ -45,7 +45,7 @@
                     </div>
                 </div>
             {% endfor %}
-            {% if user.is_staff or user.is_superuser %}
+            {% if allowed_user %}
                 <div class="col-md-4 d-flex align-items-stretch">
                     <div class="card hoverable mb-4 w-100">
                         <div class="card-body d-flex flex-column justify-content-center">

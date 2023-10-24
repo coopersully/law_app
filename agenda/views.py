@@ -12,6 +12,8 @@ def agenda(request):
 
     # Fetch all events
     events = Event.objects.all()
+    if(request.user.role != 'admin' and request.user.role != 'admin'):
+        events = events.filter(program=request.user.program)
 
     # Apply the search filter
     if search_query:
@@ -26,10 +28,15 @@ def agenda(request):
     elif sort_filter == 'title':
         events = events.order_by('title')
 
+    #check if allowed user
+    allowedRoles = ['staff', 'Staff', 'admin', 'Admin']
+    allowed_user  = any([request.user.role == allowedRole for allowedRole in allowedRoles])
+
     context = {
         'page_name': 'agenda',
         'events': events,
-        'current_sort_filter': sort_filter
+        'current_sort_filter': sort_filter,
+        'allowed_user': allowed_user
     }
 
     return render(request, 'agenda/index.html', context)
@@ -37,6 +44,7 @@ def agenda(request):
 
 def event(request, event_id):
     bit = Event.objects.get(id=event_id)
+
     context = {
         'page_name': 'events',
         'event': bit
@@ -47,7 +55,8 @@ def event(request, event_id):
 
 def agenda_new(request):
     # Check if the user is an admin (staff or superuser)
-    if not (request.user.is_staff or request.user.is_superuser):
+    allowedRoles = ['staff', 'Staff', 'admin', 'Admin']
+    if not (any([request.user.role == allowedRole for allowedRole in allowedRoles])):
         return HttpResponseForbidden("You don't have permission to access this page.")
 
     if request.method == 'POST':
