@@ -51,6 +51,7 @@ INSTALLED_APPS = [
 
     # Installed
     'bootstrap5',
+    'channels',
 
     # Custom
     'accounts',
@@ -159,3 +160,20 @@ LOGOUT_REDIRECT_URL = 'home'
 
 # Authentication
 AUTH_USER_MODEL = "accounts.CustomUser"
+
+# Use channels for routing
+ASGI_APPLICATION = 'law_app.asgi.application'
+
+# Channel layer settings
+REDIS_USERNAME = config['REDIS_USERNAME']
+REDIS_PASSWORD = config['REDIS_PASSWORD']
+REDIS_ADDRESS = config['REDIS_ADDRESS']
+REDIS_PORT = config['REDIS_PORT']
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [(f'redis://{REDIS_USERNAME}:{REDIS_PASSWORD}@{REDIS_ADDRESS}:{REDIS_PORT}')]
+        },
+    },
+}

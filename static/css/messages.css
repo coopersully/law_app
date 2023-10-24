@@ -57,3 +57,24 @@
     bottom: 0;
 }
 
+.msg-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.msg-wrapper .msg-author,
+.msg-wrapper .msg-timestamp {
+    font-size: 0.5em;
+    margin: 0 5px;
+}
+
+.msg-outgoing + .msg-timestamp,
+.msg-outgoing + .msg-author {
+    align-self: flex-end;
+}
+
+.msg-author,
+.msg-timestamp {
+    opacity: 0.5;
+}
