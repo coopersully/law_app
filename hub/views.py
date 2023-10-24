@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import FileResponse, HttpResponse, HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404
@@ -6,6 +7,7 @@ from .forms import DocumentUploadForm
 from .models import UploadedDocument
 
 
+@login_required
 def upload_document(request):
     # Check if the user is an admin (staff or superuser)
     allowedRoles = ['staff', 'Staff', 'admin', 'Admin']
@@ -24,6 +26,7 @@ def upload_document(request):
     return render(request, 'hub/upload.html', context)
 
 
+@login_required
 def list_documents(request):
     search_query = request.GET.get('search', '')
     documents = UploadedDocument.objects.all()
@@ -41,10 +44,11 @@ def list_documents(request):
     allowedRoles = ['staff', 'Staff', 'admin', 'Admin']
     allowed_user = any([request.user.role == allowedRole for allowedRole in allowedRoles])
 
-    context = {'page_name': 'hub', 'documents': documents, 'allowed_user':allowed_user}
+    context = {'page_name': 'hub', 'documents': documents, 'allowed_user': allowed_user}
     return render(request, 'hub/index.html', context)
 
 
+@login_required
 def serve_document(request, doc_id):
     document = get_object_or_404(UploadedDocument, id=doc_id)
     response = FileResponse(document.file)

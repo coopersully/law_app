@@ -13,6 +13,7 @@ def chat(request):
     return render(request, 'chat/index.html', context)
 
 
+@login_required
 def get_past_messages(request, room_name):
     last_10_messages = Message.objects.filter(room_name=room_name).order_by('-timestamp')[:10]
     messages = [{

@@ -1,9 +1,11 @@
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import render
 
 from accounts.models import CustomUser
 
 
+@login_required
 def directory(request):
     role_filter = request.GET.get('role', 'all')
     search_query = request.GET.get('search', '')
@@ -34,6 +36,7 @@ def directory(request):
     return render(request, 'directory.html', context)
 
 
+@login_required
 def profile(request, username: str):
     person = CustomUser.objects.get(username=username)
     context = {

@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect
@@ -6,6 +7,7 @@ from announcements.forms import AnnouncementForm
 from announcements.models import Announcement
 
 
+@login_required
 def announcements(request):
     search_term = request.GET.get('search', '')
     announcements = Announcement.objects.filter(
@@ -20,10 +22,12 @@ def announcements(request):
     allowedRoles = ['staff', 'Staff', 'admin', 'Admin']
     allowed_user = any([request.user.role == allowedRole for allowedRole in allowedRoles])
 
-    context = {'page_name': 'announcements', 'announcements': announcements, 'search_term': search_term, 'allowed_user': allowed_user}
+    context = {'page_name': 'announcements', 'announcements': announcements, 'search_term': search_term,
+               'allowed_user': allowed_user}
     return render(request, 'announcements/index.html', context)
 
 
+@login_required
 def announcements_new(request):
     # Check if the user is an admin (staff or superuser)
     allowedRoles = ['staff', 'Staff', 'admin', 'Admin']
@@ -42,6 +46,7 @@ def announcements_new(request):
     return render(request, 'announcements/new.html', context)
 
 
+@login_required
 def announcement(request, announcement_id):
     bit = Announcement.objects.get(id=announcement_id)
     context = {
