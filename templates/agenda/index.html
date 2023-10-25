@@ -4,7 +4,7 @@
 {% block title %}Events{% endblock %}
 
 {% block content %}
-    <form method="get" action="{% url 'agenda' %}">
+    <form id="events" method="get" action="{% url 'agenda' %}">
         <div class="col-12 col-md-10 mx-auto my-5 full-screen-h px-2">
             <div class="text-center">
                 <h1>Events</h1>
@@ -86,4 +86,15 @@
             </div>
         </div>
     </form>
+
+    <script>
+        // Get the select element by its id
+        const roleFilter = document.getElementById('sort');
+
+        // Add an event listener for changes
+        roleFilter.addEventListener('change', function () {
+            // Submit the form to refresh the page with the new filter
+            document.getElementById('events').submit();
+        });
+    </script>
 {% endblock %}

@@ -4,7 +4,7 @@
 {% block title %}Directory{% endblock %}
 
 {% block content %}
-    <form method="get" action="{% url 'directory' %}">
+    <form id="directory" method="get" action="{% url 'directory' %}">
         <div class="col-12 col-md-10 mx-auto my-5 full-screen-h px-2">
             <div class="text-center">
                 <h1>User Directory</h1>
@@ -17,21 +17,19 @@
                     <!-- Filter Menu -->
                     <div class="card card-body" style="height: 100%">
                         <h2>Filter Results</h2>
-                        <label for="role">Role:</label>
-                        <label>
-                            <select class="form-control" name="role">
-                                <option value="all" {% if current_role_filter == 'all' %}selected{% endif %}>All Roles
-                                </option>
-                                <option value="student" {% if current_role_filter == 'student' %}selected{% endif %}>
-                                    Student
-                                </option>
-                                <option value="faculty" {% if current_role_filter == 'faculty' %}selected{% endif %}>
-                                    Faculty
-                                </option>
-                                <option value="staff" {% if current_role_filter == 'staff' %}selected{% endif %}>Staff
-                                </option>
-                            </select>
-                        </label>
+                        <label for="roleFilter">Role:</label>
+                        <select id="roleFilter" class="form-control" name="role">
+                            <option value="all" {% if current_role_filter == 'all' %}selected{% endif %}>All Roles
+                            </option>
+                            <option value="student" {% if current_role_filter == 'student' %}selected{% endif %}>
+                                Student
+                            </option>
+                            <option value="faculty" {% if current_role_filter == 'faculty' %}selected{% endif %}>
+                                Faculty
+                            </option>
+                            <option value="staff" {% if current_role_filter == 'staff' %}selected{% endif %}>Staff
+                            </option>
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-10">
@@ -79,4 +77,15 @@
             </div>
         </div>
     </form>
+
+    <script>
+        // Get the select element by its id
+        const roleFilter = document.getElementById('roleFilter');
+
+        // Add an event listener for changes
+        roleFilter.addEventListener('change', function () {
+            // Submit the form to refresh the page with the new filter
+            document.getElementById('directory').submit();
+        });
+    </script>
 {% endblock %}
