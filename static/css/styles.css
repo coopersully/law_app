@@ -43,7 +43,7 @@ body {
 }
 
 .scrollable-card-container {
-    height: 30vh;
+    height: 50vh;
     overflow-y: auto;
 }
 

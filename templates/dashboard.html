@@ -4,24 +4,27 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
-    <div class="col-12 col-md-10 mx-auto my-5 full-screen-h">
+    <div class="col-12 col-md-10 mx-auto my-5 full-screen-h px-2">
 
-        <div class="card bg-{{ time_of_day }} px-5 py-5 mb-3 text-light border-25">
-            <div class="row">
-                <div class="col-md-8">
-                    <p class="lead">Welcome back, {{ user.first_name }}.</p>
-                    <h1 class="display-1 fw-bolder">{{ tempC }}°C / {{ tempF }}°F</h1>
-                    <p class="lead">{{ name }}</p>
-                </div>
-                <div class="col-md-4 text-center justify-content-center">
-                    <img src="https://openweathermap.org/img/wn/{{ icon }}@2x.png"
-                         class="img-fluid" style="height: 100%; width: auto;">
+        <div class="row">
+            <div class="col-12">
+                <div class="card bg-{{ time_of_day }} px-5 py-5 mb-3 text-light border-25">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <p class="lead">Welcome back, {{ user.first_name }}.</p>
+                            <h1 class="display-1 fw-bolder">{{ tempC }}°C / {{ tempF }}°F</h1>
+                            <p class="lead">{{ name }}</p>
+                        </div>
+                        <div class="col-md-4 text-center justify-content-center d-flex align-items-center">
+                            <img src="{% static 'images/weather/'|add:icon|add:'.svg' %}"
+                                 class="img-fluid" style="max-height: 200px; height: auto; opacity: 0.5;">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-6 order-2 order-md-1 mb-3">
                 <div style="height: 100%;">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
@@ -89,15 +92,15 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6 order-1 order-md-2 mb-3">
                 <div class="card border-25" style="height: 100%;">
-                    <div class="card-body text-center">
+                    <div class="card-body text-center justify-content-center d-flex align-items-center">
                         <div class="card-text">
-                            <p class="fw-bolder fs-4">No unread messages.</p>
+                            <h2 class="fw-bolder fs-4">No unread messages.</h2>
                             <p>Nothing to see here; time to rest, unwind, and relax.</p>
+                            <img src="{% static 'images/people/relax_at_home.svg' %}"
+                                 class="img-fluid" style="width: 50%; height: auto;" alt="Girl relaxing at home">
                         </div>
-                        <img src="{% static 'images/people/relax_at_home.svg' %}"
-                             class="img-fluid" style="width: 50%; height: auto;" alt="Girl relaxing at home">
                     </div>
                 </div>
             </div>
