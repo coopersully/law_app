@@ -17,7 +17,7 @@ class CustomUser(AbstractUser):
         ('admin', 'Administrator'),
     ]
 
-    role = models.CharField(max_length=20, choices=ROLE_CHOICES)
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default = 'student')
     phone_number = models.CharField(max_length=15, blank=True, null=True)
     bio = models.TextField(blank=True, null=True)
     school_email = models.EmailField(max_length=254, unique=True)
