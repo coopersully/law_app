@@ -7,41 +7,69 @@
 
 {% block content %}
     <div class="container my-5 full-screen-h">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="card">
-                    {% if user.profile_pic %}
-                        <img src="{{ user.profile_pic.url }}" class="card-img-top profile-pic"
-                             alt="{{ user.first_name }} {{ user.last_name }}">
-                    {% else %}
-                        <img src="{% static 'images/default_profile_pic.jpg' %}" class="card-img-top profile-pic"
-                             alt="{{ user.first_name }} {{ user.last_name }}">
-                    {% endif %}
-                    <div class="card-body text-center">
-                        <h5 class="card-title">{{ person.username }}</h5>
-                        <p class="card-text">
-                            <i class="fas fa-user"></i> {{ person.role }}
-                        </p>
-                        <p class="card-text">
-                            <i class="fas fa-envelope"></i> {{ person.email }}
-                        </p>
-                        <p class="card-text">
-                            <i class="fas fa-phone"></i> {{ person.phone_number }}
-                        </p>
+        <div class="card border-25 px-5 py-5">
+            <div class="row">
+                <div class="col-md-8">
+                    <h1>{{ person.first_name }} {{ person.last_name }}'s Profile</h1>
+                    <hr>
+                    <h4>About {{ person.first_name }}</h4>
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <p>
+                                {% if person.bio %}
+                                    {{ person.bio }}
+                                {% else %}
+                                    A navigator at heart, but a {{ person.role }} in life.
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                    <h4>Details</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Position</h5>
+                            <p>{{ person.role }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Program</h5>
+                            <p>{{ person.program }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>School Email</h5>
+                            <p>{{ person.school_email }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Personal Email</h5>
+                            <p>{{ person.email }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Phone Number</h5>
+                            <p>{{ person.phone_number }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <a class="btn btn-lg btn-primary btn-rounded" disabled>Chat</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-9">
-                <h1>{{ person.first_name }} {{ person.last_name }}'s Profile</h1>
-                <hr>
-                <h4>Biography</h4>
-                <p>{{ person.bio }}</p>
-                <h4>School Email</h4>
-                <p>{{ person.school_email }}</p>
-                {% if person.role == 'student' %}
-                    <h4>Student ID</h4>
-                    <p>{{ person.student_id }}</p>
-                {% endif %}
+                <div class="col-md-4">
+                    <div class="card">
+                        {% if user.profile_pic %}
+                            <img src="{{ user.profile_pic.url }}"
+                                 class="card-img-top profile-pic"
+                                 alt="{{ user.first_name }} {{ user.last_name }}"
+                            >
+                        {% else %}
+                            <img src="{% static 'images/default_profile_pic.jpg' %}"
+                                 class="card-img-top profile-pic"
+                                 alt="{{ user.first_name }} {{ user.last_name }}"
+                            >
+                        {% endif %}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
