@@ -105,3 +105,8 @@ card {
 .border-25 {
     border-radius: 25px;
 }
+
+.profile-pic {
+    width: 100%;
+    aspect-ratio: 1/1;
+}
