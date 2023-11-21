@@ -1,13 +1,11 @@
 from datetime import datetime
 
+import requests
 from django.shortcuts import render
-
-from law_app import settings
-
-import requests, json
 
 from agenda.models import Event
 from announcements.models import Announcement
+from law_app import settings
 
 
 def get_weather(location):
