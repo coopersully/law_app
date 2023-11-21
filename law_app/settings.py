@@ -13,31 +13,28 @@ import json
 import os
 import sys
 from pathlib import Path
-
 import dj_database_url
 from django.core.management.utils import get_random_secret_key
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-# Load app config variables
-# !! Replaces environment variables for Samford deployment
-f = open(os.path.join(BASE_DIR, 'config.json'))
-config = json.load(f)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config['DJANGO_SECRET_KEY']
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config['DEBUG']
+DEBUG = os.environ.get("DEBUG")
 
-ALLOWED_HOSTS = config['DJANGO_ALLOWED_HOSTS'].split(",")
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(",")
 
 #API Keys
-OPEN_WEATHER = config['OPEN_WEATHER_API_KEY']
+OPEN_WEATHER = os.environ.get("OPEN_WEATHER_API_KEY")
 
 # Application definition
 
@@ -165,10 +162,10 @@ AUTH_USER_MODEL = "accounts.CustomUser"
 ASGI_APPLICATION = 'law_app.asgi.application'
 
 # Channel layer settings
-REDIS_USERNAME = config['REDIS_USERNAME']
-REDIS_PASSWORD = config['REDIS_PASSWORD']
-REDIS_ADDRESS = config['REDIS_ADDRESS']
-REDIS_PORT = config['REDIS_PORT']
+REDIS_USERNAME = os.environ.get("REDIS_USERNAME")
+REDIS_PASSWORD = os.environ.get("REDIS_PASSWORD")
+REDIS_ADDRESS = os.environ.get("REDIS_ADDRESS")
+REDIS_PORT = os.environ.get("REDIS_PORT")
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
