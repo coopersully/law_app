@@ -27,14 +27,12 @@
             <!-- Chat Room column -->
             <div class="col-md-8">
                 <div class="card border-0 px-3 py-3 h-100">
-                    <!-- Form to change room name -->
-                    <form id="roomNameForm">
-                        <div class="input-group mb-3">
-                            <input type="text" id="newRoomName" class="form-control" placeholder="Enter new room name">
-                            <button class="btn btn-secondary" type="submit">Change Room</button>
-                        </div>
-                    </form>
-                    <h1 id="roomNameHeader">Chat Room - #public</h1>
+                    <h1 id="roomTitle">Chat Room - Unknown</h1>
+                    <hr>
+                    <!-- Chat content container -->
+                    <div id="chatWindow" class="px-3 py-3 fw-bolder chat-container"
+                         style="height: 70vh; overflow-y: auto;"></div>
+
                     <hr>
 
                     <!-- Message Bar -->
@@ -57,27 +55,26 @@
 {% block scripts %}
     <script src="{% static 'js/message-helpers.js' %}"></script>
     <script>
-        let roomName = 'public';  // Initialize with a default room name
+        const roomName = '{{ room }}'.toLowerCase().trim();
         const currentUsername = '{{ user.username }}';
         const chatContainer = document.querySelector('.chat-container');
 
-        // Function to fetch past messages
-        function fetchPastMessages() {
-            fetch(`/chat/${roomName}/past_messages/`)
-                .then(response => response.json())
-                .then(data => {
-                    const messages = data.messages;
-                    for (let message_data of messages) {
-                        addMessage(message_data, 'P');
-                    }
-                });
-        }
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('roomTitle').innerText = 'Chat Room - #' + roomName;
+        })
 
-        // Initialize by fetching past messages
-        fetchPastMessages();
+        // Fetch past messages
+        fetch(`/chat/${roomName}/past_messages/`)
+            .then(response => response.json())
+            .then(data => {
+                const messages = data.messages;
+                for (let message_data of messages) {
+                    addMessage(message_data, 'P');
+                }
+            });
 
         // Create a WebSocket for the given room
-        let chatSocket = new WebSocket(`ws://${window.location.host}/ws/chat/${roomName}/`);
+        const chatSocket = new WebSocket(`ws://${window.location.host}/ws/chat/${roomName}/`);
 
         // When a message is received...
         chatSocket.onmessage = function (e) {
@@ -103,46 +100,18 @@
             }
         });
 
-        // Get room name form and header elements
-        const roomNameForm = document.getElementById('roomNameForm');
-        const roomNameHeader = document.getElementById('roomNameHeader');
+        const addedMessages = new Set();  // To keep track of added messages
 
-        // Event listener for changing room
-        roomNameForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-            roomName = document.getElementById('newRoomName').value.toLowerCase();
-
-            // Update room name in header
-            roomNameHeader.textContent = `Chat Room - #${roomName}`;
-
-            // Clear the chat container
-            chatContainer.innerHTML = '';
-
-            // Close the old WebSocket connection
-            chatSocket.close();
-
-            // Open a new WebSocket connection with the new room name
-            chatSocket = new WebSocket(`ws://${window.location.host}/ws/chat/${roomName}/`);
-
-            // Re-attach the existing event listeners to the new WebSocket
-            chatSocket.onmessage = function (e) {
-                const data = JSON.parse(e.data);
-                addMessage(data, 'R');
-            };
-
-            chatSocket.onclose = function (e) {
-                console.error('Chat socket closed unexpectedly');
-            };
-
-            // Fetch past messages for the new room
-            fetchPastMessages();
-        });
-
-        // Function to add messages to the chat
         function addMessage(data, source) {
+            const uniqueId = `${data.timestamp}_${data.message}`;
+            if (addedMessages.has(uniqueId)) {
+                return;  // Skip adding the message if it already exists
+            }
+            addedMessages.add(uniqueId);  // Add the unique ID to the set
+
             let type = (currentUsername === data.author) ? "outgoing" : "incoming";
             chatContainer.insertAdjacentHTML('beforeend', `
-                <!-- Message #${source}_${data.id} -->
+                <!-- Message #${source}_${data.id} (U #${uniqueId}) -->
                 <div class="msg my-3 msg-${type}">
                     <small class="msg-author">${data.author}</small><br>
                     ${data.message}<br>

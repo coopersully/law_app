@@ -7,8 +7,12 @@ from chat.models import Message
 
 @login_required
 def chat(request):
+    # Get the 'room' query parameter, default to 'public' if not provided
+    room = request.GET.get('room', 'public')
+
     context = {
         'page_name': 'chat',
+        'room': room,
     }
     return render(request, 'chat/index.html', context)
 
