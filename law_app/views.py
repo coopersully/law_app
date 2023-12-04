@@ -42,7 +42,15 @@ def home(request):
         context = {'page_name': 'home'}
         return render(request, 'index.html', context)
     else:
-        weather = get_weather(request.user.program.location)
+        program = request.user.program
+
+        location: str
+        if program is None:
+            location = "Cambridge, GB"
+        else:
+            location = program.location
+
+        weather = get_weather(location)
         time_of_day = get_time_of_day()
         events = Event.objects.all()
         announcements = Announcement.objects.all()
