@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.db import models
 
+
 class Program(models.Model):
     year = models.IntegerField(4)
     location = models.CharField(max_length=20, null=True)
@@ -8,6 +9,7 @@ class Program(models.Model):
 
     def __str__(self):
         return f"{self.title} - {self.year}"
+
 
 class CustomUser(AbstractUser):
     ROLE_CHOICES = [
@@ -17,7 +19,7 @@ class CustomUser(AbstractUser):
         ('admin', 'Administrator'),
     ]
 
-    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default = 'student')
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='student')
     phone_number = models.CharField(max_length=15, blank=True, null=True)
     bio = models.TextField(blank=True, null=True)
     school_email = models.EmailField(max_length=254, unique=True)
