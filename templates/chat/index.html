@@ -74,7 +74,7 @@
             });
 
         // Create a WebSocket for the given room
-        const chatSocket = new WebSocket(`ws://${window.location.host}/ws/chat/${roomName}/`);
+        const chatSocket = new WebSocket(`wss://${window.location.host}/wss/chat/${roomName}/`);
 
         // When a message is received...
         chatSocket.onmessage = function (e) {
