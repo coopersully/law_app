@@ -52,3 +52,6 @@ class Command(BaseCommand):
                 owner_id=1,
                 program_id=event_data['program_id']
             )
+
+        # Output success message
+        self.stdout.write(self.style.SUCCESS('Successfully created test events.'))

@@ -22,3 +22,6 @@ class Command(BaseCommand):
                 location=program_data['location'],
                 year=program_data['year'],
             )
+
+        # Output success message
+        self.stdout.write(self.style.SUCCESS('Successfully created test programs.'))

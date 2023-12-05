@@ -48,3 +48,6 @@ class Command(BaseCommand):
                 content=announcement_data['content'],
                 program_id=announcement_data['program']
             )
+
+        # Output success message
+        self.stdout.write(self.style.SUCCESS('Successfully created announcements.'))
