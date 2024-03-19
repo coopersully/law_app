@@ -1,11 +1,18 @@
+import hashlib
+import hmac
+import subprocess
 from datetime import datetime
 
 import requests
+from django.http import HttpResponseForbidden, HttpResponse
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 
 from agenda.models import Event
 from announcements.models import Announcement
 from law_app import settings
+from law_app.settings import GITHUB_SECRET_TOKEN
 
 
 def get_weather(location):
@@ -66,3 +73,24 @@ def home(request):
             'time_of_day': time_of_day  # Adding time of day here
         }
         return render(request, 'dashboard.html', context)
+
+
+@csrf_exempt
+@require_POST
+def github_webhook(request):
+    # Get signature sent by GitHub
+    github_signature = request.headers.get('X-Hub-Signature-256')
+    if not github_signature:
+        return HttpResponseForbidden('Permission denied.')
+
+    # Compute hash using the request body and your secret token
+    signature = 'sha256=' + hmac.new(GITHUB_SECRET_TOKEN, request.body, hashlib.sha256).hexdigest()
+
+    # Verify if computed hash matches GitHub's hash
+    if not hmac.compare_digest(github_signature, signature):
+        return HttpResponseForbidden('Permission denied.')
+
+    # If the hash matches, execute the script
+    subprocess.run(['/var/www/law_app/pull_changes.sh'])
+
+    return HttpResponse('Success')

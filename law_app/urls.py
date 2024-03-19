@@ -22,6 +22,9 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
+    # GitHub Webhooks
+    path('webhook/github/', views.github_webhook, name='github_webhook'),
+
     # Django Administrator
     path('admin/', admin.site.urls),
 
