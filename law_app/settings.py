@@ -32,7 +32,12 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 DEBUG = os.environ.get("DEBUG")
 
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(",")
-# CSRF_TRUSTED_ORIGINS = [ 'https://stingray-app-f7f7d.ondigitalocean.app', 'http://stingray-app-f7f7d.ondigitalocean.app' ]
+CSRF_TRUSTED_ORIGINS = [
+    'https://samford.edu,'
+    'https://csdev.samford.edu,'
+    'https://navigator.samford.edu',
+    'https://law_app.samford.edu'
+]
 
 # API Keys
 OPEN_WEATHER = os.environ.get("OPEN_WEATHER_API_KEY")
