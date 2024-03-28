@@ -2,9 +2,10 @@ import hashlib
 import hmac
 import subprocess
 from datetime import datetime
+from venv import logger
 
 import requests
-from django.http import HttpResponseForbidden, HttpResponse
+from django.http import HttpResponseForbidden, HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
@@ -78,19 +79,31 @@ def home(request):
 @csrf_exempt
 @require_POST
 def github_webhook(request):
-    # Get signature sent by GitHub
-    github_signature = request.headers.get('X-Hub-Signature-256')
-    if not github_signature:
-        return HttpResponseForbidden('Permission denied.')
+    try:
+        # Get the signature sent by GitHub
+        github_signature = request.headers.get('X-Hub-Signature-256')
+        if not github_signature:
+            logger.warning('No GitHub signature provided.')
+            return JsonResponse({'error': 'No GitHub signature provided.'}, status=403)
 
-    # Compute hash using the request body and your secret token
-    signature = 'sha256=' + hmac.new(GITHUB_SECRET_TOKEN, request.body, hashlib.sha256).hexdigest()
+        # Compute the hash using the request body and your secret token
+        signature = 'sha256=' + hmac.new(GITHUB_SECRET_TOKEN.encode(), request.body, hashlib.sha256).hexdigest()
 
-    # Verify if computed hash matches GitHub's hash
-    if not hmac.compare_digest(github_signature, signature):
-        return HttpResponseForbidden('Permission denied.')
+        # Verify if the computed hash matches GitHub's hash
+        if not hmac.compare_digest(github_signature, signature):
+            logger.warning('GitHub signature does not match.')
+            return JsonResponse({'error': 'GitHub signature does not match.'}, status=403)
 
-    # If the hash matches, execute the script
-    subprocess.run(['/var/www/law_app/pull_changes.sh'])
+        # If the hash matches, execute the script
+        result = subprocess.run(['/var/www/law_app/pull_changes.sh'], capture_output=True, text=True)
 
-    return HttpResponse('Success')
+        if result.returncode != 0:
+            logger.error(f'Error executing script: {result.stderr}')
+            return JsonResponse({'error': 'Script execution failed.', 'details': result.stderr}, status=500)
+
+        logger.info(f'Script executed successfully: {result.stdout}')
+        return JsonResponse({'message': 'Success', 'details': result.stdout})
+
+    except Exception as e:
+        logger.exception("Error handling the request.")
+        return JsonResponse({'error': 'Internal Server Error', 'details': str(e)}, status=500)
