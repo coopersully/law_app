@@ -33,17 +33,13 @@ DEBUG = os.environ.get("DEBUG")
 
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(",")
 CSRF_TRUSTED_ORIGINS = [
-    'https://samford.edu,'
-    'https://csdev.samford.edu,'
-    'https://navigator.samford.edu',
-    'https://law_app.samford.edu'
+    'https://lawapp.samford.edu'
 ]
 
 # API Keys
 OPEN_WEATHER = os.environ.get("OPEN_WEATHER_API_KEY")
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
